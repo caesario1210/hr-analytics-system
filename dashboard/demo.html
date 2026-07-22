@@ -7,7 +7,7 @@
 <style>
 * { margin:0; padding:0; box-sizing:border-box; }
 body { font-family:'Segoe UI',sans-serif; background:#f8fafc; color:#1e293b; padding:20px; }
-h1 { color:#0f172a; margin-bottom:4px; }
+h1 { color:#0f172a; }
 .sub { color:#64748b; margin-bottom:24px; }
 .nav { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:24px; }
 .nav button {
@@ -17,199 +17,193 @@ h1 { color:#0f172a; margin-bottom:4px; }
 }
 .nav button:hover { border-color:#2563eb; color:#2563eb; }
 .nav button.active { background:#2563eb; color:#fff; border-color:#2563eb; }
-.panel { display:none; }
-.panel.active { display:block; }
-.search {
+.tcontent { display:none; }
+.tcontent.active { display:block; }
+.srch {
   padding:10px 16px; border:1px solid #e2e8f0; border-radius:8px;
-  width:300px; font-size:0.9rem; margin-bottom:16px;
+  width:300px; font-size:0.9rem; margin-bottom:12px;
 }
-table { width:100%; border-collapse:collapse; font-size:0.85rem; }
+table { width:100%; border-collapse:collapse; font-size:0.82rem; }
 th {
-  background:#f1f5f9; padding:10px 12px; text-align:left;
+  background:#f1f5f9; padding:8px 10px; text-align:left;
   cursor:pointer; user-select:none; font-weight:600;
-  border-bottom:2px solid #e2e8f0; position:sticky; top:0;
+  border-bottom:2px solid #e2e8f0; white-space:nowrap;
 }
 th:hover { background:#e2e8f0; }
-th::after { content:' \25B4\25BE'; font-size:0.65rem; color:#94a3b8; }
-td { padding:8px 12px; border-bottom:1px solid #f1f5f9; }
+th::after { content:' \25B4\25BE'; font-size:0.6rem; color:#94a3b8; }
+td { padding:6px 10px; border-bottom:1px solid #f1f5f9; white-space:nowrap; }
 tr:hover td { background:#f8fafc; }
 .wrap { overflow-x:auto; max-height:500px; overflow-y:auto; border:1px solid #e2e8f0; border-radius:8px; }
-.count { color:#64748b; font-size:0.85rem; margin-bottom:12px; }
-.summary-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:12px; margin-bottom:24px; }
-.summary-card {
-  background:#fff; border:1px solid #e2e8f0; border-radius:10px;
-  padding:16px; text-align:center;
-}
-.summary-card .num { font-size:1.5rem; font-weight:700; color:#2563eb; }
-.summary-card .label { font-size:0.8rem; color:#64748b; margin-top:4px; }
+.cnt { color:#64748b; font-size:0.85rem; margin-bottom:8px; }
 @media(max-width:768px) {
-  .search { width:100%; }
+  .srch { width:100%; }
   .nav button { flex:1; text-align:center; }
 }
 </style>
 </head>
 <body>
-
 <h1>HR Analytics System — Data Preview</h1>
-<p class="sub">Click column headers to sort. Type to search. All data is sample (first 25 rows per table).</p>
+<p class="sub">Click column headers to sort. Type to filter. Sample: first 25 rows per table.</p>
 
-<div class="summary-grid" id="summary"></div>
-<div class="nav" id="tabs"></div>
-<div id="panels"></div>
+<div class="nav" id="nav"></div>
+
+<div id="tables">
+<div class="tcontent active" id="tc-employee">
+<div class="cnt">Employee — 25 of 300 rows</div>
+<input class="srch" placeholder="Search employee..." oninput="filter('employee',this.value)">
+<div class="wrap"><table id="tbl-employee"></table></div></div>
+<div class="tcontent" id="tc-department">
+<div class="cnt">Department — 8 of 8 rows</div>
+<input class="srch" placeholder="Search department..." oninput="filter('department',this.value)">
+<div class="wrap"><table id="tbl-department"></table></div></div>
+<div class="tcontent" id="tc-position">
+<div class="cnt">Position — 19 of 19 rows</div>
+<input class="srch" placeholder="Search position..." oninput="filter('position',this.value)">
+<div class="wrap"><table id="tbl-position"></table></div></div>
+<div class="tcontent" id="tc-attendance">
+<div class="cnt">Attendance — 25 of 28,200 rows</div>
+<input class="srch" placeholder="Search attendance..." oninput="filter('attendance',this.value)">
+<div class="wrap"><table id="tbl-attendance"></table></div></div>
+<div class="tcontent" id="tc-leave">
+<div class="cnt">Leave — 25 of 540 rows</div>
+<input class="srch" placeholder="Search leave..." oninput="filter('leave',this.value)">
+<div class="wrap"><table id="tbl-leave"></table></div></div>
+<div class="tcontent" id="tc-performance">
+<div class="cnt">Performance — 25 of 1,200 rows</div>
+<input class="srch" placeholder="Search performance..." oninput="filter('performance',this.value)">
+<div class="wrap"><table id="tbl-performance"></table></div></div>
+<div class="tcontent" id="tc-recruitment">
+<div class="cnt">Recruitment — 25 of 224 rows</div>
+<input class="srch" placeholder="Search recruitment..." oninput="filter('recruitment',this.value)">
+<div class="wrap"><table id="tbl-recruitment"></table></div></div>
+<div class="tcontent" id="tc-training">
+<div class="cnt">Training — 25 of 603 rows</div>
+<input class="srch" placeholder="Search training..." oninput="filter('training',this.value)">
+<div class="wrap"><table id="tbl-training"></table></div></div>
+</div>
 
 <script>
-// ── Inline Data (sample: first 25 rows per table) ──────────────
-const SUMMARY = {emp_total:300,emp_active:262,turnover_rate:12.7,avg_salary:13080107,att_present_pct:78.6,hire_rate:29.0};
+//── Data ───────────────────────────────────────────────────
+const DATA = {};
 
-const TABLES = [
-  {key:'employee', label:'\u{1F465} Employee', data:[
-    {employee_id:1,full_name:"Donald Walker",gender:"Male",birth_date:"1973-10-15",hire_date:"2025-11-17",department_id:2,position_id:5,salary:9466000,status:"Resigned"},
-    {employee_id:2,full_name:"Joshua Garza",gender:"Male",birth_date:"1993-01-09",hire_date:"2016-09-28",department_id:5,position_id:13,salary:17949000,status:"Active"},
-    {employee_id:3,full_name:"David Guzman",gender:"Male",birth_date:"1971-01-06",hire_date:"2015-07-17",department_id:4,position_id:11,salary:17175000,status:"Active"},
-    {employee_id:4,full_name:"Michael Barnes",gender:"Male",birth_date:"1976-10-07",hire_date:"2024-07-19",department_id:2,position_id:5,salary:9728000,status:"Active"},
-    {employee_id:5,full_name:"Sean Blake",gender:"Male",birth_date:"1990-01-19",hire_date:"2022-08-23",department_id:7,position_id:16,salary:4291000,status:"Resigned"},
-    {employee_id:6,full_name:"Donald Lewis",gender:"Male",birth_date:"1993-10-03",hire_date:"2017-09-19",department_id:1,position_id:3,salary:19160000,status:"Active"},
-    {employee_id:7,full_name:"Brent Abbott",gender:"Male",birth_date:"1973-06-24",hire_date:"2020-09-22",department_id:4,position_id:11,salary:17897000,status:"Active"},
-    {employee_id:8,full_name:"Nicholas Herrera",gender:"Male",birth_date:"1979-01-01",hire_date:"2025-04-09",department_id:1,position_id:1,salary:5488000,status:"Active"},
-    {employee_id:9,full_name:"Ronald Montgomery",gender:"Male",birth_date:"1972-09-06",hire_date:"2021-06-10",department_id:7,position_id:16,salary:5421000,status:"Active"},
-    {employee_id:10,full_name:"Andrea Stanley",gender:"Female",birth_date:"1989-08-24",hire_date:"2021-02-25",department_id:8,position_id:19,salary:33525000,status:"Resigned"},
-    {employee_id:11,full_name:"Sean James",gender:"Male",birth_date:"1972-09-18",hire_date:"2019-12-04",department_id:1,position_id:2,salary:13090000,status:"Active"},
-    {employee_id:12,full_name:"Carla Kelly",gender:"Female",birth_date:"1991-08-19",hire_date:"2022-09-18",department_id:7,position_id:17,salary:15491000,status:"Active"},
-    {employee_id:13,full_name:"Matthew Lynch",gender:"Male",birth_date:"1993-11-17",hire_date:"2019-07-17",department_id:5,position_id:12,salary:4995000,status:"Active"},
-    {employee_id:14,full_name:"Carla Gray",gender:"Female",birth_date:"1988-03-05",hire_date:"2017-11-29",department_id:4,position_id:11,salary:15378000,status:"Active"},
-    {employee_id:15,full_name:"Michael Cameron",gender:"Male",birth_date:"1993-06-01",hire_date:"2025-11-20",department_id:2,position_id:7,salary:12728000,status:"Active"},
-    {employee_id:16,full_name:"Robert Morales",gender:"Male",birth_date:"1977-10-17",hire_date:"2015-12-14",department_id:7,position_id:16,salary:5049000,status:"Active"},
-    {employee_id:17,full_name:"Latoya Robbins",gender:"Female",birth_date:"1977-03-07",hire_date:"2016-02-16",department_id:6,position_id:14,salary:4683000,status:"Active"},
-    {employee_id:18,full_name:"Stephen Day",gender:"Male",birth_date:"1992-04-20",hire_date:"2018-08-14",department_id:5,position_id:12,salary:5480000,status:"Resigned"},
-    {employee_id:19,full_name:"Patrick Ryan",gender:"Male",birth_date:"1979-01-05",hire_date:"2017-06-06",department_id:8,position_id:18,salary:15153000,status:"Active"},
-    {employee_id:20,full_name:"James Robinson",gender:"Male",birth_date:"1984-07-30",hire_date:"2024-12-11",department_id:7,position_id:16,salary:3839000,status:"Active"},
-    {employee_id:21,full_name:"Nicole Callahan",gender:"Female",birth_date:"1987-05-04",hire_date:"2017-05-09",department_id:5,position_id:12,salary:5105000,status:"Active"},
-    {employee_id:22,full_name:"Michael Carlson",gender:"Male",birth_date:"1991-05-08",hire_date:"2017-08-07",department_id:4,position_id:10,salary:8909000,status:"Active"},
-    {employee_id:23,full_name:"John King",gender:"Male",birth_date:"1982-12-26",hire_date:"2021-07-18",department_id:1,position_id:2,salary:11687000,status:"Active"},
-    {employee_id:24,full_name:"Michael Wilson",gender:"Male",birth_date:"1999-04-16",hire_date:"2024-05-30",department_id:5,position_id:12,salary:4453000,status:"Active"},
-    {employee_id:25,full_name:"Martin Rodriguez",gender:"Male",birth_date:"1995-07-20",hire_date:"2024-02-19",department_id:4,position_id:11,salary:18051000,status:"Active"}
-  ]},
-  {key:'department', label:'\u{1F3E2} Department', data:[
-    {department_id:1,department_name:"IT"},{department_id:2,department_name:"Finance"},{department_id:3,department_name:"Sales"},{department_id:4,department_name:"Marketing"},{department_id:5,department_name:"Operations"},{department_id:6,department_name:"HR"},{department_id:7,department_name:"Admin"},{department_id:8,department_name:"Legal"}
-  ]},
-  {key:'position', label:'\u{1F3ED} Position', data:[
-    {position_id:1,position_name:"Junior Developer",grade:"G1"},{position_id:2,position_name:"Senior Developer",grade:"G3"},{position_id:3,position_name:"IT Manager",grade:"G4"},{position_id:4,position_name:"Data Analyst",grade:"G2"},{position_id:5,position_name:"Accountant",grade:"G2"},{position_id:6,position_name:"Finance Manager",grade:"G4"},{position_id:7,position_name:"Financial Analyst",grade:"G3"},{position_id:8,position_name:"Sales Representative",grade:"G2"},{position_id:9,position_name:"Sales Manager",grade:"G4"},{position_id:10,position_name:"Marketing Specialist",grade:"G2"},{position_id:11,position_name:"Marketing Manager",grade:"G4"},{position_id:12,position_name:"Operations Associate",grade:"G1"},{position_id:13,position_name:"Operations Manager",grade:"G4"},{position_id:14,position_name:"HR Staff",grade:"G1"},{position_id:15,position_name:"HR Manager",grade:"G4"},{position_id:16,position_name:"Admin Staff",grade:"G1"},{position_id:17,position_name:"Admin Manager",grade:"G4"},{position_id:18,position_name:"Legal Counsel",grade:"G3"},{position_id:19,position_name:"Legal Manager",grade:"G5"}
-  ]},
-  {key:'attendance', label:'\u{1F4C5} Attendance', data:[
-    {employee_id:1,date:"2025-01-01",check_in:"08:08:00",check_out:"17:52:00",status:"Present"},{employee_id:2,date:"2025-01-01",check_in:"08:21:00",check_out:"16:09:00",status:"Present"},{employee_id:3,date:"2025-01-01",check_in:"09:45:00",check_out:"18:31:00",status:"Present"},{employee_id:4,date:"2025-01-01",check_in:"09:16:00",check_out:"17:08:00",status:"Present"},{employee_id:5,date:"2025-01-01",check_in:"07:24:00",check_out:"18:08:00",status:"Present"},{employee_id:6,date:"2025-01-01",check_in:"09:45:00",check_out:"17:57:00",status:"Present"},{employee_id:7,date:"2025-01-01",check_in:null,check_out:null,status:"Leave"},{employee_id:8,date:"2025-01-01",check_in:"07:10:00",check_out:"17:17:00",status:"Present"},{employee_id:9,date:"2025-01-01",check_in:"08:35:00",check_out:"16:37:00",status:"Present"},{employee_id:10,date:"2025-01-01",check_in:"07:24:00",check_out:"17:57:00",status:"Present"},{employee_id:11,date:"2025-01-01",check_in:"07:41:00",check_out:"17:20:00",status:"Present"},{employee_id:12,date:"2025-01-01",check_in:"09:05:00",check_out:"18:39:00",status:"Present"},{employee_id:13,date:"2025-01-01",check_in:"07:56:00",check_out:"16:06:00",status:"Present"},{employee_id:14,date:"2025-01-01",check_in:"07:25:00",check_out:"16:27:00",status:"Present"},{employee_id:15,date:"2025-01-01",check_in:"08:01:00",check_out:"17:42:00",status:"Present"},{employee_id:16,date:"2025-01-01",check_in:"07:35:00",check_out:"18:25:00",status:"Present"},{employee_id:17,date:"2025-01-01",check_in:"09:39:00",check_out:"18:35:00",status:"Present"},{employee_id:18,date:"2025-01-01",check_in:"09:39:00",check_out:"18:53:00",status:"Present"},{employee_id:19,date:"2025-01-01",check_in:"09:23:00",check_out:"17:21:00",status:"Present"},{employee_id:20,date:"2025-01-01",check_in:"07:57:00",check_out:"18:19:00",status:"Present"},{employee_id:21,date:"2025-01-01",check_in:"09:16:00",check_out:"17:58:00",status:"Present"},{employee_id:22,date:"2025-01-01",check_in:"08:08:00",check_out:"17:01:00",status:"Present"},{employee_id:23,date:"2025-01-01",check_in:"07:39:00",check_out:"16:00:00",status:"Present"},{employee_id:24,date:"2025-01-01",check_in:"09:39:00",check_out:"17:24:00",status:"Present"},{employee_id:25,date:"2025-01-01",check_in:"09:49:00",check_out:"16:43:00",status:"Present"}
-  ]},
-  {key:'leave', label:'\u2708 Leave', data:[
-    {leave_id:1,employee_id:1,leave_type:"Paternity",start_date:"2025-10-17",end_date:"2025-10-31",duration:14},{leave_id:2,employee_id:1,leave_type:"Sick",start_date:"2025-09-04",end_date:"2025-09-18",duration:14},{leave_id:3,employee_id:1,leave_type:"Annual",start_date:"2024-03-19",end_date:"2024-03-25",duration:6},{leave_id:4,employee_id:2,leave_type:"Annual",start_date:"2025-01-29",end_date:"2025-02-08",duration:10},{leave_id:5,employee_id:2,leave_type:"Personal",start_date:"2025-08-21",end_date:"2025-09-02",duration:12},{leave_id:6,employee_id:2,leave_type:"Personal",start_date:"2025-02-23",end_date:"2025-02-25",duration:2},{leave_id:7,employee_id:2,leave_type:"Sick",start_date:"2025-10-10",end_date:"2025-10-24",duration:14},{leave_id:8,employee_id:3,leave_type:"Sick",start_date:"2025-07-27",end_date:"2025-07-31",duration:4},{leave_id:9,employee_id:3,leave_type:"Personal",start_date:"2025-11-17",end_date:"2025-11-22",duration:5},{leave_id:10,employee_id:4,leave_type:"Maternity",start_date:"2025-02-12",end_date:"2025-02-19",duration:7},{leave_id:11,employee_id:4,leave_type:"Personal",start_date:"2024-01-30",end_date:"2024-01-31",duration:1},{leave_id:12,employee_id:5,leave_type:"Annual",start_date:"2025-05-29",end_date:"2025-06-05",duration:7},{leave_id:13,employee_id:6,leave_type:"Paternity",start_date:"2024-09-18",end_date:"2024-09-26",duration:8},{leave_id:14,employee_id:6,leave_type:"Sick",start_date:"2025-11-11",end_date:"2025-11-24",duration:13},{leave_id:15,employee_id:6,leave_type:"Personal",start_date:"2025-08-18",end_date:"2025-09-01",duration:14},{leave_id:16,employee_id:6,leave_type:"Annual",start_date:"2025-04-25",end_date:"2025-05-06",duration:11},{leave_id:17,employee_id:7,leave_type:"Annual",start_date:"2024-04-11",end_date:"2024-04-17",duration:6},{leave_id:18,employee_id:7,leave_type:"Personal",start_date:"2025-04-08",end_date:"2025-04-20",duration:12},{leave_id:19,employee_id:7,leave_type:"Annual",start_date:"2024-10-19",end_date:"2024-10-26",duration:7},{leave_id:20,employee_id:8,leave_type:"Annual",start_date:"2024-04-29",end_date:"2024-05-02",duration:3},{leave_id:21,employee_id:8,leave_type:"Annual",start_date:"2024-05-06",end_date:"2024-05-10",duration:4},{leave_id:22,employee_id:9,leave_type:"Personal",start_date:"2024-05-20",end_date:"2024-05-22",duration:2},{leave_id:23,employee_id:10,leave_type:"Annual",start_date:"2025-10-07",end_date:"2025-10-15",duration:8},{leave_id:24,employee_id:10,leave_type:"Annual",start_date:"2025-06-22",end_date:"2025-07-06",duration:14},{leave_id:25,employee_id:11,leave_type:"Annual",start_date:"2025-08-21",end_date:"2025-09-01",duration:11}
-  ]},
-  {key:'performance', label:'\u{2B50} Performance', data:[
-    {employee_id:1,period:"2025-Q1",kpi_score:92.99,manager_score:76.55},{employee_id:1,period:"2025-Q2",kpi_score:85.48,manager_score:68.38},{employee_id:1,period:"2025-Q3",kpi_score:88.4,manager_score:67.72},{employee_id:1,period:"2025-Q4",kpi_score:100.0,manager_score:71.96},{employee_id:2,period:"2025-Q1",kpi_score:59.27,manager_score:76.77},{employee_id:2,period:"2025-Q2",kpi_score:72.43,manager_score:76.9},{employee_id:2,period:"2025-Q3",kpi_score:71.44,manager_score:79.14},{employee_id:2,period:"2025-Q4",kpi_score:73.42,manager_score:77.98},{employee_id:3,period:"2025-Q1",kpi_score:72.87,manager_score:73.89},{employee_id:3,period:"2025-Q2",kpi_score:77.62,manager_score:68.34},{employee_id:3,period:"2025-Q3",kpi_score:73.22,manager_score:79.45},{employee_id:3,period:"2025-Q4",kpi_score:73.65,manager_score:79.51},{employee_id:4,period:"2025-Q1",kpi_score:75.89,manager_score:86.56},{employee_id:4,period:"2025-Q2",kpi_score:81.7,manager_score:81.33},{employee_id:4,period:"2025-Q3",kpi_score:75.65,manager_score:80.21},{employee_id:4,period:"2025-Q4",kpi_score:78.36,manager_score:81.28},{employee_id:5,period:"2025-Q1",kpi_score:73.65,manager_score:76.98},{employee_id:5,period:"2025-Q2",kpi_score:71.1,manager_score:93.78},{employee_id:5,period:"2025-Q3",kpi_score:74.03,manager_score:90.56},{employee_id:5,period:"2025-Q4",kpi_score:70.13,manager_score:84.36},{employee_id:6,period:"2025-Q1",kpi_score:84.8,manager_score:78.45},{employee_id:6,period:"2025-Q2",kpi_score:74.67,manager_score:69.94},{employee_id:6,period:"2025-Q3",kpi_score:83.93,manager_score:80.13},{employee_id:6,period:"2025-Q4",kpi_score:87.5,manager_score:72.12},{employee_id:7,period:"2025-Q1",kpi_score:58.93,manager_score:75.48}
-  ]},
-  {key:'recruitment', label:'\u{1F50D} Recruitment', data:[
-    {candidate_id:1,candidate_name:"Alyssa Williams",position:"Sales Manager",source:"Job Portal",status:"Hired",apply_date:"2024-02-01",hire_date:"2024-02-18"},{candidate_id:2,candidate_name:"Deborah Clark",position:"Data Analyst",source:"LinkedIn",status:"Rejected",apply_date:"2025-05-13",hire_date:null},{candidate_id:3,candidate_name:"Mark Jimenez",position:"Accountant",source:"Job Portal",status:"Applied",apply_date:"2025-03-20",hire_date:null},{candidate_id:4,candidate_name:"Maria Turner",position:"Accountant",source:"Job Portal",status:"Hired",apply_date:"2025-05-02",hire_date:"2025-05-30"},{candidate_id:5,candidate_name:"Melinda Evans",position:"Junior Developer",source:"Company Website",status:"Rejected",apply_date:"2024-07-09",hire_date:null},{candidate_id:6,candidate_name:"Brooke Perry",position:"Admin Manager",source:"Job Portal",status:"Rejected",apply_date:"2024-02-26",hire_date:null},{candidate_id:7,candidate_name:"Lawrence Edwards",position:"Admin Staff",source:"University",status:"Rejected",apply_date:"2024-12-26",hire_date:null},{candidate_id:8,candidate_name:"William Reed",position:"Operations Associate",source:"Company Website",status:"Rejected",apply_date:"2025-07-11",hire_date:null},{candidate_id:9,candidate_name:"Jacob Hoffman",position:"Financial Analyst",source:"Job Portal",status:"Applied",apply_date:"2024-11-05",hire_date:null},{candidate_id:10,candidate_name:"Bryan Cole",position:"Finance Manager",source:"LinkedIn",status:"Rejected",apply_date:"2024-09-04",hire_date:null},{candidate_id:11,candidate_name:"Dylan Cruz",position:"Admin Manager",source:"Company Website",status:"Rejected",apply_date:"2024-04-19",hire_date:null},{candidate_id:12,candidate_name:"Victor Barrera",position:"Senior Developer",source:"Job Portal",status:"Rejected",apply_date:"2025-04-22",hire_date:null},{candidate_id:13,candidate_name:"Kenneth Edwards",position:"Marketing Manager",source:"LinkedIn",status:"Rejected",apply_date:"2025-09-23",hire_date:null},{candidate_id:14,candidate_name:"Zachary Owens",position:"Legal Manager",source:"Job Portal",status:"Interviewed",apply_date:"2025-08-15",hire_date:null},{candidate_id:15,candidate_name:"Alexander Landry",position:"HR Staff",source:"Job Portal",status:"Rejected",apply_date:"2025-11-13",hire_date:null},{candidate_id:16,candidate_name:"David Aguilar",position:"Operations Associate",source:"Job Portal",status:"Rejected",apply_date:"2025-01-27",hire_date:null},{candidate_id:17,candidate_name:"Johnny Khan",position:"Marketing Specialist",source:"LinkedIn",status:"Hired",apply_date:"2024-02-07",hire_date:"2024-04-03"},{candidate_id:18,candidate_name:"Donna Smith",position:"Operations Associate",source:"Job Portal",status:"Rejected",apply_date:"2025-05-23",hire_date:null},{candidate_id:19,candidate_name:"Stephen Luna",position:"Junior Developer",source:"Job Portal",status:"Hired",apply_date:"2024-03-24",hire_date:"2024-04-18"},{candidate_id:20,candidate_name:"Andrew Williams",position:"Junior Developer",source:"Company Website",status:"Hired",apply_date:"2025-08-16",hire_date:"2025-09-26"},{candidate_id:21,candidate_name:"Juan Jones",position:"Marketing Manager",source:"Referral",status:"Rejected",apply_date:"2025-03-12",hire_date:null},{candidate_id:22,candidate_name:"Joshua Bryan",position:"Marketing Manager",source:"Job Portal",status:"Rejected",apply_date:"2025-01-26",hire_date:null},{candidate_id:23,candidate_name:"Barbara Hester",position:"Data Analyst",source:"LinkedIn",status:"Rejected",apply_date:"2025-04-29",hire_date:null},{candidate_id:24,candidate_name:"William Grant",position:"Junior Developer",source:"Referral",status:"Interviewed",apply_date:"2024-11-01",hire_date:null},{candidate_id:25,candidate_name:"Christina Hicks",position:"Marketing Manager",source:"Company Website",status:"Interviewed",apply_date:"2024-10-10",hire_date:null}
-  ]},
-  {key:'training', label:'\u{1F393} Training', data:[
-    {training_id:1,employee_id:1,course_name:"Cloud Computing",completion:"Completed",score:96.87},{training_id:2,employee_id:1,course_name:"Conflict Resolution",completion:"In Progress",score:null},{training_id:3,employee_id:1,course_name:"Time Management",completion:"Not Started",score:null},{training_id:4,employee_id:2,course_name:"Communication Skills",completion:"Completed",score:73.49},{training_id:5,employee_id:2,course_name:"Public Speaking",completion:"Completed",score:70.93},{training_id:6,employee_id:2,course_name:"Conflict Resolution",completion:"Completed",score:71.51},{training_id:7,employee_id:3,course_name:"Cloud Computing",completion:"Completed",score:81.5},{training_id:8,employee_id:3,course_name:"Public Speaking",completion:"Completed",score:71.37},{training_id:9,employee_id:4,course_name:"Cloud Computing",completion:"Completed",score:79.92},{training_id:10,employee_id:4,course_name:"Conflict Resolution",completion:"Completed",score:92.23},{training_id:11,employee_id:4,course_name:"Data Literacy",completion:"Completed",score:79.24},{training_id:12,employee_id:5,course_name:"Time Management",completion:"Completed",score:76.51},{training_id:13,employee_id:5,course_name:"Conflict Resolution",completion:"Completed",score:84.36},{training_id:14,employee_id:5,course_name:"Public Speaking",completion:"Completed",score:80.2},{training_id:15,employee_id:6,course_name:"Data Literacy",completion:"Completed",score:85.3},{training_id:16,employee_id:7,course_name:"Time Management",completion:"Completed",score:58.8},{training_id:17,employee_id:8,course_name:"Advanced Excel",completion:"Completed",score:77.03},{training_id:18,employee_id:9,course_name:"Time Management",completion:"Completed",score:84.79},{training_id:19,employee_id:10,course_name:"Conflict Resolution",completion:"Completed",score:79.29},{training_id:20,employee_id:10,course_name:"Communication Skills",completion:"Completed",score:96.11},{training_id:21,employee_id:11,course_name:"Conflict Resolution",completion:"Completed",score:86.32},{training_id:22,employee_id:11,course_name:"Project Management",completion:"Completed",score:88.51},{training_id:23,employee_id:12,course_name:"Public Speaking",completion:"In Progress",score:null},{training_id:24,employee_id:12,course_name:"Project Management",completion:"Completed",score:84.31},{training_id:25,employee_id:12,course_name:"Conflict Resolution",completion:"Completed",score:84.02}
-  ]}
-];
-
-// ── Render ──────────────────────────────────────────────────
-let currentTab = 'employee';
-const sortState = {};
-
-function renderSummary() {
-  const cards = [
-    {n:SUMMARY.emp_total,l:'Total Employees'},
-    {n:SUMMARY.emp_active,l:'Active'},
-    {n:SUMMARY.turnover_rate+'%',l:'Turnover Rate'},
-    {n:'Rp '+Math.round(SUMMARY.avg_salary/1e6)+'M',l:'Avg Salary'},
-    {n:SUMMARY.att_present_pct+'%',l:'Attendance'},
-    {n:SUMMARY.hire_rate+'%',l:'Hire Rate'},
-  ];
-  document.getElementById('summary').innerHTML = cards.map(c =>
-    '<div class="summary-card"><div class="num">'+c.n+'</div><div class="label">'+c.l+'</div></div>'
-  ).join('');
+function add(key, cols, rows, total) {
+  DATA[key] = {cols, rows:[...rows], total};
 }
 
-function renderTab(key) {
-  currentTab = key;
-  document.querySelectorAll('.nav button').forEach(b => b.classList.toggle('active', b.dataset.key === key));
-  document.querySelectorAll('.panel').forEach(p => p.classList.toggle('active', p.id === 'panel-'+key));
-  const panel = document.getElementById('panel-'+key);
-  if (!panel.querySelector('tbody tr')) {
-    buildTable(key);
-  }
+add('employee',
+  ['employee_id','full_name','gender','birth_date','hire_date','department_id','position_id','salary','status'],
+  [[1,'Donald Walker','Male','1973-10-15','2025-11-17',2,5,9466000,'Resigned'],[2,'Joshua Garza','Male','1993-01-09','2016-09-28',5,13,17949000,'Active'],[3,'David Guzman','Male','1971-01-06','2015-07-17',4,11,17175000,'Active'],[4,'Michael Barnes','Male','1976-10-07','2024-07-19',2,5,9728000,'Active'],[5,'Sean Blake','Male','1990-01-19','2022-08-23',7,16,4291000,'Resigned'],[6,'Donald Lewis','Male','1993-10-03','2017-09-19',1,3,19160000,'Active'],[7,'Brent Abbott','Male','1973-06-24','2020-09-22',4,11,17897000,'Active'],[8,'Nicholas Herrera','Male','1979-01-01','2025-04-09',1,1,5488000,'Active'],[9,'Ronald Montgomery','Male','1972-09-06','2021-06-10',7,16,5421000,'Active'],[10,'Andrea Stanley','Female','1989-08-24','2021-02-25',8,19,33525000,'Resigned'],[11,'Sean James','Male','1972-09-18','2019-12-04',1,2,13090000,'Active'],[12,'Carla Kelly','Female','1991-08-19','2022-09-18',7,17,15491000,'Active'],[13,'Matthew Lynch','Male','1993-11-17','2019-07-17',5,12,4995000,'Active'],[14,'Carla Gray','Female','1988-03-05','2017-11-29',4,11,15378000,'Active'],[15,'Michael Cameron','Male','1993-06-01','2025-11-20',2,7,12728000,'Active'],[16,'Robert Morales','Male','1977-10-17','2015-12-14',7,16,5049000,'Active'],[17,'Latoya Robbins','Female','1977-03-07','2016-02-16',6,14,4683000,'Active'],[18,'Stephen Day','Male','1992-04-20','2018-08-14',5,12,5480000,'Resigned'],[19,'Patrick Ryan','Male','1979-01-05','2017-06-06',8,18,15153000,'Active'],[20,'James Robinson','Male','1984-07-30','2024-12-11',7,16,3839000,'Active'],[21,'Nicole Callahan','Female','1987-05-04','2017-05-09',5,12,5105000,'Active'],[22,'Michael Carlson','Male','1991-05-08','2017-08-07',4,10,8909000,'Active'],[23,'John King','Male','1982-12-26','2021-07-18',1,2,11687000,'Active'],[24,'Michael Wilson','Male','1999-04-16','2024-05-30',5,12,4453000,'Active'],[25,'Martin Rodriguez','Male','1995-07-20','2024-02-19',4,11,18051000,'Active']], 300);
+
+add('department',
+  ['department_id','department_name'],
+  [[1,'IT'],[2,'Finance'],[3,'Sales'],[4,'Marketing'],[5,'Operations'],[6,'HR'],[7,'Admin'],[8,'Legal']], 8);
+
+add('position',
+  ['position_id','position_name','grade'],
+  [[1,'Junior Developer','G1'],[2,'Senior Developer','G3'],[3,'IT Manager','G4'],[4,'Data Analyst','G2'],[5,'Accountant','G2'],[6,'Finance Manager','G4'],[7,'Financial Analyst','G3'],[8,'Sales Representative','G2'],[9,'Sales Manager','G4'],[10,'Marketing Specialist','G2'],[11,'Marketing Manager','G4'],[12,'Operations Associate','G1'],[13,'Operations Manager','G4'],[14,'HR Staff','G1'],[15,'HR Manager','G4'],[16,'Admin Staff','G1'],[17,'Admin Manager','G4'],[18,'Legal Counsel','G3'],[19,'Legal Manager','G5']], 19);
+
+const attRows=[];
+(function(){const r=[[1,'2025-01-01','08:08:00','17:52:00','Present'],[2,'2025-01-01','08:21:00','16:09:00','Present'],[3,'2025-01-01','09:45:00','18:31:00','Present'],[4,'2025-01-01','09:16:00','17:08:00','Present'],[5,'2025-01-01','07:24:00','18:08:00','Present'],[6,'2025-01-01','09:45:00','17:57:00','Present'],[7,'2025-01-01','','','Leave'],[8,'2025-01-01','07:10:00','17:17:00','Present'],[9,'2025-01-01','08:35:00','16:37:00','Present'],[10,'2025-01-01','07:24:00','17:57:00','Present'],[11,'2025-01-01','07:41:00','17:20:00','Present'],[12,'2025-01-01','09:05:00','18:39:00','Present'],[13,'2025-01-01','07:56:00','16:06:00','Present'],[14,'2025-01-01','07:25:00','16:27:00','Present'],[15,'2025-01-01','08:01:00','17:42:00','Present'],[16,'2025-01-01','07:35:00','18:25:00','Present'],[17,'2025-01-01','09:39:00','18:35:00','Present'],[18,'2025-01-01','09:39:00','18:53:00','Present'],[19,'2025-01-01','09:23:00','17:21:00','Present'],[20,'2025-01-01','07:57:00','18:19:00','Present'],[21,'2025-01-01','09:16:00','17:58:00','Present'],[22,'2025-01-01','08:08:00','17:01:00','Present'],[23,'2025-01-01','07:39:00','16:00:00','Present'],[24,'2025-01-01','09:39:00','17:24:00','Present'],[25,'2025-01-01','09:49:00','16:43:00','Present']];for(let i=0;i<r.length;i++){attRows.push(r[i]);}})();
+add('attendance',['employee_id','date','check_in','check_out','status'], attRows, 28200);
+
+const levRows=[];
+(function(){const r=[[1,1,'Paternity','2025-10-17','2025-10-31',14],[2,1,'Sick','2025-09-04','2025-09-18',14],[3,1,'Annual','2024-03-19','2024-03-25',6],[4,2,'Annual','2025-01-29','2025-02-08',10],[5,2,'Personal','2025-08-21','2025-09-02',12],[6,2,'Personal','2025-02-23','2025-02-25',2],[7,2,'Sick','2025-10-10','2025-10-24',14],[8,3,'Sick','2025-07-27','2025-07-31',4],[9,3,'Personal','2025-11-17','2025-11-22',5],[10,4,'Maternity','2025-02-12','2025-02-19',7],[11,4,'Personal','2024-01-30','2024-01-31',1],[12,5,'Annual','2025-05-29','2025-06-05',7],[13,6,'Paternity','2024-09-18','2024-09-26',8],[14,6,'Sick','2025-11-11','2025-11-24',13],[15,6,'Personal','2025-08-18','2025-09-01',14],[16,6,'Annual','2025-04-25','2025-05-06',11],[17,7,'Annual','2024-04-11','2024-04-17',6],[18,7,'Personal','2025-04-08','2025-04-20',12],[19,7,'Annual','2024-10-19','2024-10-26',7],[20,8,'Annual','2024-04-29','2024-05-02',3],[21,8,'Annual','2024-05-06','2024-05-10',4],[22,9,'Personal','2024-05-20','2024-05-22',2],[23,10,'Annual','2025-10-07','2025-10-15',8],[24,10,'Annual','2025-06-22','2025-07-06',14],[25,11,'Annual','2025-08-21','2025-09-01',11]];for(let i=0;i<r.length;i++){levRows.push(r[i]);}})();
+add('leave',['leave_id','employee_id','leave_type','start_date','end_date','duration'], levRows, 540);
+
+const perfRows=[];
+(function(){const r=[[1,'2025-Q1',92.99,76.55],[1,'2025-Q2',85.48,68.38],[1,'2025-Q3',88.4,67.72],[1,'2025-Q4',100.0,71.96],[2,'2025-Q1',59.27,76.77],[2,'2025-Q2',72.43,76.9],[2,'2025-Q3',71.44,79.14],[2,'2025-Q4',73.42,77.98],[3,'2025-Q1',72.87,73.89],[3,'2025-Q2',77.62,68.34],[3,'2025-Q3',73.22,79.45],[3,'2025-Q4',73.65,79.51],[4,'2025-Q1',75.89,86.56],[4,'2025-Q2',81.7,81.33],[4,'2025-Q3',75.65,80.21],[4,'2025-Q4',78.36,81.28],[5,'2025-Q1',73.65,76.98],[5,'2025-Q2',71.1,93.78],[5,'2025-Q3',74.03,90.56],[5,'2025-Q4',70.13,84.36],[6,'2025-Q1',84.8,78.45],[6,'2025-Q2',74.67,69.94],[6,'2025-Q3',83.93,80.13],[6,'2025-Q4',87.5,72.12],[7,'2025-Q1',58.93,75.48]];for(let i=0;i<r.length;i++){perfRows.push(r[i]);}})();
+add('performance',['employee_id','period','kpi_score','manager_score'], perfRows, 1200);
+
+const recRows=[];
+(function(){const r=[[1,'Alyssa Williams','Sales Manager','Job Portal','Hired','2024-02-01','2024-02-18'],[2,'Deborah Clark','Data Analyst','LinkedIn','Rejected','2025-05-13',''],[3,'Mark Jimenez','Accountant','Job Portal','Applied','2025-03-20',''],[4,'Maria Turner','Accountant','Job Portal','Hired','2025-05-02','2025-05-30'],[5,'Melinda Evans','Junior Developer','Company Website','Rejected','2024-07-09',''],[6,'Brooke Perry','Admin Manager','Job Portal','Rejected','2024-02-26',''],[7,'Lawrence Edwards','Admin Staff','University','Rejected','2024-12-26',''],[8,'William Reed','Operations Associate','Company Website','Rejected','2025-07-11',''],[9,'Jacob Hoffman','Financial Analyst','Job Portal','Applied','2024-11-05',''],[10,'Bryan Cole','Finance Manager','LinkedIn','Rejected','2024-09-04',''],[11,'Dylan Cruz','Admin Manager','Company Website','Rejected','2024-04-19',''],[12,'Victor Barrera','Senior Developer','Job Portal','Rejected','2025-04-22',''],[13,'Kenneth Edwards','Marketing Manager','LinkedIn','Rejected','2025-09-23',''],[14,'Zachary Owens','Legal Manager','Job Portal','Interviewed','2025-08-15',''],[15,'Alexander Landry','HR Staff','Job Portal','Rejected','2025-11-13',''],[16,'David Aguilar','Operations Associate','Job Portal','Rejected','2025-01-27',''],[17,'Johnny Khan','Marketing Specialist','LinkedIn','Hired','2024-02-07','2024-04-03'],[18,'Donna Smith','Operations Associate','Job Portal','Rejected','2025-05-23',''],[19,'Stephen Luna','Junior Developer','Job Portal','Hired','2024-03-24','2024-04-18'],[20,'Andrew Williams','Junior Developer','Company Website','Hired','2025-08-16','2025-09-26'],[21,'Juan Jones','Marketing Manager','Referral','Rejected','2025-03-12',''],[22,'Joshua Bryan','Marketing Manager','Job Portal','Rejected','2025-01-26',''],[23,'Barbara Hester','Data Analyst','LinkedIn','Rejected','2025-04-29',''],[24,'William Grant','Junior Developer','Referral','Interviewed','2024-11-01',''],[25,'Christina Hicks','Marketing Manager','Company Website','Interviewed','2024-10-10','']];for(let i=0;i<r.length;i++){recRows.push(r[i]);}})();
+add('recruitment',['candidate_id','candidate_name','position','source','status','apply_date','hire_date'], recRows, 224);
+
+const trainRows=[];
+(function(){const r=[[1,1,'Cloud Computing','Completed',96.87],[2,1,'Conflict Resolution','In Progress',''],[3,1,'Time Management','Not Started',''],[4,2,'Communication Skills','Completed',73.49],[5,2,'Public Speaking','Completed',70.93],[6,2,'Conflict Resolution','Completed',71.51],[7,3,'Cloud Computing','Completed',81.5],[8,3,'Public Speaking','Completed',71.37],[9,4,'Cloud Computing','Completed',79.92],[10,4,'Conflict Resolution','Completed',92.23],[11,4,'Data Literacy','Completed',79.24],[12,5,'Time Management','Completed',76.51],[13,5,'Conflict Resolution','Completed',84.36],[14,5,'Public Speaking','Completed',80.2],[15,6,'Data Literacy','Completed',85.3],[16,7,'Time Management','Completed',58.8],[17,8,'Advanced Excel','Completed',77.03],[18,9,'Time Management','Completed',84.79],[19,10,'Conflict Resolution','Completed',79.29],[20,10,'Communication Skills','Completed',96.11],[21,11,'Conflict Resolution','Completed',86.32],[22,11,'Project Management','Completed',88.51],[23,12,'Public Speaking','In Progress',''],[24,12,'Project Management','Completed',84.31],[25,12,'Conflict Resolution','Completed',84.02]];for(let i=0;i<r.length;i++){trainRows.push(r[i]);}})();
+add('training',['training_id','employee_id','course_name','completion','score'], trainRows, 603);
+
+//── Render ──────────────────────────────────────────────────
+const keys = ['employee','department','position','attendance','leave','performance','recruitment','training'];
+const labels = {'employee':'👥 Employee','department':'🏢 Department','position':'🏭 Position','attendance':'📅 Attendance','leave':'✈️ Leave','performance':'⭐ Performance','recruitment':'🔍 Recruitment','training':'🎓 Training'};
+const colLabels = {'employee_id':'ID','full_name':'Name','department_id':'Dept','position_id':'Pos','salary':'Salary (Rp)','kpi_score':'KPI','manager_score':'Manager','candidate_id':'ID','candidate_name':'Name','leave_id':'ID','leave_type':'Type','training_id':'ID','course_name':'Course','employee_id':'Emp ID','period':'Period','date':'Date','check_in':'In','check_out':'Out','status':'Status','grade':'Grade','department_name':'Department','position_name':'Position','gender':'Gender','birth_date':'Birth','hire_date':'Hired','source':'Source','apply_date':'Applied','hire_date':'Hired','start_date':'Start','end_date':'End','duration':'Days','completion':'Status','score':'Score','position':'Position','candidate_name':'Name','course_name':'Course','participants':'People'};
+const fkeys = ['employee','department','position','attendance','leave','performance','recruitment','training'];
+let current = 'employee';
+let sortCol = {};
+let sortDir = {};
+
+function fmtCol(c) {
+  return colLabels[c] || c.replace(/_/g,' ').replace(/\b\w/g,l=>l.toUpperCase());
 }
 
 function buildTable(key) {
-  const t = TABLES.find(x => x.key === key);
-  const data = t.data;
-  const cols = Object.keys(data[0]);
-  const panel = document.getElementById('panel-'+key);
-  const count = panel.querySelector('.count');
-  count.textContent = 'Showing '+data.length+' rows (sample)';
-  if (!sortState[key]) sortState[key] = {col:null,dir:1};
-  const thead = panel.querySelector('thead');
-  thead.innerHTML = cols.map(c => '<th data-col="'+c+'" onclick="sortTable(\''+key+'\',\''+c+'\')">'+formatCol(c)+'</th>').join('');
-  renderRows(key, data);
-  panel.querySelector('.search').oninput = function() {
-    const q = this.value.toLowerCase();
-    const filtered = data.filter(r => cols.some(c => String(r[c]??'').toLowerCase().includes(q)));
-    renderRows(key, filtered);
-    count.textContent = 'Showing '+filtered.length+' rows'+(q?' (filtered)':'');
-  };
-}
-
-function renderRows(key, data) {
-  const t = TABLES.find(x => x.key === key);
-  const cols = Object.keys(t.data[0]);
-  const st = sortState[key];
-  if (st.col) {
-    data = [...data].sort((a,b) => {
-      const va = a[st.col], vb = b[st.col];
-      if (va === null || va === undefined) return 1;
-      if (vb === null || vb === undefined) return -1;
-      if (typeof va === 'number') return (va - vb) * st.dir;
-      return String(va).localeCompare(String(vb)) * st.dir;
+  const d = DATA[key];
+  let html = '<thead><tr>';
+  d.cols.forEach(c => {
+    html += `<th onclick="doSort('${key}','${c}')">${fmtCol(c)}</th>`;
+  });
+  html += '</tr></thead><tbody>';
+  d.rows.forEach(r => {
+    html += '<tr>';
+    r.forEach((v,i) => {
+      const c = d.cols[i];
+      let disp = (v === '' || v === null || v === undefined) ? '' : v;
+      if (c === 'salary' && typeof v === 'number') disp = 'Rp '+Math.round(v).toLocaleString();
+      if ((c === 'kpi_score' || c === 'manager_score' || c === 'score') && v !== '' && v !== null) disp = parseFloat(v).toFixed(1);
+      html += `<td>${disp}</td>`;
     });
-  }
-  document.querySelector('#panel-'+key+' tbody').innerHTML = data.map(r =>
-    '<tr>'+cols.map(c => {
-      let v = r[c];
-      if (v === null || v === undefined) return '<td></td>';
-      if (typeof v === 'number' && c.includes('salary')) v = 'Rp '+Math.round(v).toLocaleString();
-      return '<td>'+v+'</td>';
-    }).join('')+'</tr>'
-  ).join('');
+    html += '</tr>';
+  });
+  html += '</tbody>';
+  document.getElementById('tbl-'+key).innerHTML = html;
 }
 
-function sortTable(key, col) {
-  const st = sortState[key];
-  if (st.col === col) st.dir *= -1;
-  else { st.col = col; st.dir = 1; }
-  const t = TABLES.find(x => x.key === key);
-  renderRows(key, [...t.data]);
+function doSort(key, col) {
+  const d = DATA[key];
+  const idx = d.cols.indexOf(col);
+  if (sortCol[key] === col) sortDir[key] *= -1;
+  else { sortCol[key] = col; sortDir[key] = 1; }
+  d.rows.sort((a,b) => {
+    let va = a[idx], vb = b[idx];
+    if (va === '' || va === null) return 1;
+    if (vb === '' || vb === null) return -1;
+    if (typeof va === 'number') return (va - vb) * sortDir[key];
+    if (typeof va === 'string' && !isNaN(parseFloat(va))) return (parseFloat(va) - parseFloat(vb)) * sortDir[key];
+    return String(va).localeCompare(String(vb)) * sortDir[key];
+  });
+  buildTable(key);
 }
 
-function formatCol(c) {
-  return c.replace(/_/g,' ').replace(/\b\w/g, l => l.toUpperCase());
+function filter(key, q) {
+  const d = DATA[key];
+  const tbl = document.getElementById('tbl-'+key);
+  const rows = tbl.querySelectorAll('tbody tr');
+  q = q.toLowerCase();
+  rows.forEach(row => {
+    let match = false;
+    row.querySelectorAll('td').forEach(td => { if (td.textContent.toLowerCase().includes(q)) match = true; });
+    row.style.display = match ? '' : 'none';
+  });
 }
 
-renderSummary();
-const tabsEl = document.getElementById('tabs');
-const panelsEl = document.getElementById('panels');
-TABLES.forEach(t => {
+function switchTab(key) {
+  current = key;
+  document.querySelectorAll('.nav button').forEach(b => b.classList.toggle('active', b.dataset.key === key));
+  document.querySelectorAll('.tcontent').forEach(t => t.classList.toggle('active', t.id === 'tc-'+key));
+  if (!document.getElementById('tbl-'+key).querySelector('thead tr')) buildTable(key);
+  document.getElementById('tc-'+key).querySelector('.srch').value = '';
+}
+
+// Init nav + build first table
+const nav = document.getElementById('nav');
+keys.forEach(k => {
   const btn = document.createElement('button');
-  btn.textContent = t.label;
-  btn.dataset.key = t.key;
-  btn.onclick = () => renderTab(t.key);
-  tabsEl.appendChild(btn);
-  const panel = document.createElement('div');
-  panel.id = 'panel-'+t.key;
-  panel.className = 'panel'+(t.key===currentTab?' active':'');
-  panel.innerHTML = '<input class="search" placeholder="Search..." /><div class="count">Loading...</div><div class="wrap"><table><thead></thead><tbody></tbody></table></div>';
-  panelsEl.appendChild(panel);
+  btn.textContent = labels[k];
+  btn.dataset.key = k;
+  btn.onclick = () => switchTab(k);
+  if (k === current) btn.className = 'active';
+  nav.appendChild(btn);
 });
-renderTab('employee');
+buildTable('employee');
 </script>
 </body>
 </html>
