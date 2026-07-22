@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HR Analytics System — Portfolio Project</title>
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+      background: #f8fafc;
+      color: #1e293b;
+      line-height: 1.6;
+    }
+    a { color: #2563eb; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    img { max-width: 100%; display: block; }
+
+    .container { max-width: 1140px; margin: 0 auto; padding: 0 24px; }
+
+    /* ── Hero ── */
+    .hero {
+      background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 50%, #1a4a6e 100%);
+      color: #fff;
+      padding: 80px 0 60px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3Cpattern id='g' patternUnits='userSpaceOnUse' width='60' height='60'%3E%3Cpath fill='none' stroke='rgba(255,255,255,0.03)' stroke-width='1' d='M0 0h60v60'/%3E%3C/pattern%3E%3C/defs%3E%3Crect fill='url(%23g)' width='100%25' height='100%25'/%3E%3C/svg%3E");
+      pointer-events: none;
+    }
+    .hero * { position: relative; z-index: 1; }
+    .hero h1 { font-size: 3rem; font-weight: 700; letter-spacing: -0.02em; }
+    .hero h1 span { color: #60a5fa; }
+    .hero p {
+      font-size: 1.2rem; color: #94a3b8; max-width: 640px; margin: 16px auto 0;
+    }
+    .hero-badge {
+      display: inline-block;
+      background: rgba(96, 165, 250, 0.15);
+      color: #93c5fd;
+      border: 1px solid rgba(96,165,250,0.3);
+      padding: 4px 14px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      margin-bottom: 20px;
+    }
+    .hero-actions { margin-top: 32px; display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+    .btn {
+      display: inline-block;
+      padding: 12px 32px;
+      border-radius: 8px;
+      font-weight: 600;
+      transition: all 0.2s;
+      cursor: pointer;
+      border: none;
+    }
+    .btn-primary { background: #2563eb; color: #fff; }
+    .btn-primary:hover { background: #1d4ed8; text-decoration: none; }
+    .btn-outline { background: transparent; color: #93c5fd; border: 1px solid #3b82f6; }
+    .btn-outline:hover { background: rgba(59,130,246,0.1); text-decoration: none; }
+
+    /* ── Nav ── */
+    nav {
+      background: #fff;
+      border-bottom: 1px solid #e2e8f0;
+      padding: 0 24px;
+      position: sticky; top: 0; z-index: 100;
+    }
+    nav .container {
+      display: flex; align-items: center; justify-content: space-between;
+      height: 60px;
+    }
+    nav .logo { font-weight: 700; font-size: 1.1rem; color: #0f172a; }
+    nav .logo span { color: #2563eb; }
+    nav ul { display: flex; gap: 28px; list-style: none; }
+    nav ul a { color: #475569; font-weight: 500; font-size: 0.9rem; }
+    nav ul a:hover { color: #2563eb; text-decoration: none; }
+
+    /* ── Section ── */
+    section { padding: 72px 0; }
+    section h2 {
+      font-size: 2rem; font-weight: 700; margin-bottom: 12px;
+      letter-spacing: -0.01em;
+    }
+    section .subtitle { color: #64748b; font-size: 1.05rem; max-width: 600px; margin-bottom: 40px; }
+
+    /* ── Cards ── */
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; }
+    .grid-4 { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 24px; }
+    .card {
+      background: #fff;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 28px;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .card:hover { box-shadow: 0 8px 30px rgba(0,0,0,0.06); transform: translateY(-2px); }
+    .card h3 { font-size: 1.1rem; margin-bottom: 8px; }
+    .card p { color: #64748b; font-size: 0.95rem; }
+    .card .icon { font-size: 2rem; margin-bottom: 12px; display: block; }
+
+    /* ── Roadmap / Level ── */
+    .roadmap { display: flex; flex-direction: column; gap: 16px; }
+    .roadmap-item {
+      display: flex; align-items: flex-start; gap: 20px;
+      background: #fff;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 24px 28px;
+    }
+    .roadmap-num {
+      flex-shrink: 0;
+      width: 44px; height: 44px;
+      background: #2563eb; color: #fff;
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: 1.1rem;
+    }
+    .roadmap-item h3 { font-size: 1.05rem; }
+    .roadmap-item p { color: #64748b; font-size: 0.9rem; margin-top: 4px; }
+
+    /* ── Query preview ── */
+    .query-block {
+      background: #0f172a;
+      color: #e2e8f0;
+      border-radius: 10px;
+      padding: 20px 24px;
+      font-family: 'JetBrains Mono', 'Cascadia Code', 'Consolas', monospace;
+      font-size: 0.85rem;
+      overflow-x: auto;
+      margin-top: 12px;
+    }
+    .query-block .kw { color: #93c5fd; }
+    .query-block .fn { color: #6ee7b7; }
+    .query-block .num { color: #fbbf24; }
+    .query-block .cm { color: #64748b; font-style: italic; }
+
+    /* ── Footer ── */
+    footer {
+      border-top: 1px solid #e2e8f0;
+      padding: 32px 0;
+      text-align: center;
+      color: #94a3b8;
+      font-size: 0.9rem;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 2rem; }
+      .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+      nav ul { display: none; }
+      .hero-actions { flex-direction: column; align-items: center; }
+      .btn { width: 100%; max-width: 280px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav>
+  <div class="container">
+    <div class="logo">HR<span>Analytics</span></div>
+    <ul>
+      <li><a href="#overview">Overview</a></li>
+      <li><a href="#features">Features</a></li>
+      <li><a href="#generation">Data Gen</a></li>
+      <li><a href="#roadmap">Roadmap</a></li>
+      <li><a href="#queries">Queries</a></li>
+      <li><a href="#dashboard">Dashboard</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- Hero -->
+<header class="hero">
+  <div class="container">
+    <div class="hero-badge">Data Analyst &bull; Portfolio Project</div>
+    <h1>HR <span>Analytics</span> System</h1>
+    <p>End-to-end data analytics pipeline — from raw CSV to actionable HR insights. Database design, SQL, data cleaning, analysis, and interactive dashboard.</p>
+    <div class="hero-actions">
+      <a href="#overview" class="btn btn-primary">Explore Project</a>
+      <a href="https://github.com/" target="_blank" class="btn btn-outline">View on GitHub &nearr;</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- Overview -->
+<section id="overview">
+  <div class="container">
+    <h2>Project Overview</h2>
+    <p class="subtitle">Simulates how a Data Analyst transforms raw HR data into data-driven decisions for management.</p>
+    <div class="grid-4">
+      <div class="card">
+        <span class="icon">&boxbox;</span>
+        <h3>8 Relational Tables</h3>
+        <p>Department, Position, Employee, Attendance, Leave, Performance, Recruitment, Training</p>
+      </div>
+      <div class="card">
+        <span class="icon">&osol;</span>
+        <h3>Python Data Generation</h3>
+        <p>Realistic dummy data via Python + Faker: salary by grade&times;department, attendance patterns, training&ndash;performance correlation.</p>
+      </div>
+      <div class="card">
+        <span class="icon">&osol;</span>
+        <h3>SQL Pipeline</h3>
+        <p>Import &rarr; Clean &rarr; Transform &rarr; Analyze. Full SQL workflow with window functions and subqueries.</p>
+      </div>
+      <div class="card">
+        <span class="icon">&DiagUpArrow;</span>
+        <h3>15+ Analysis Queries</h3>
+        <p>Headcount, turnover, payroll distribution, attendance trends, recruitment funnel, performance ranking.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Target Audience -->
+<section style="background:#f1f5f9; padding:72px 0;">
+  <div class="container">
+    <h2>Target Audience</h2>
+    <p class="subtitle">Built for HR stakeholders and reviewed by data leaders.</p>
+    <div class="grid-3">
+      <div class="card"><h3>HR Manager</h3><p>Headcount summary, turnover rate, department distribution.</p></div>
+      <div class="card"><h3>HR Operations</h3><p>Attendance monitoring and leave tracking.</p></div>
+      <div class="card"><h3>Finance / Payroll</h3><p>Average salary, salary distribution, top earners by department.</p></div>
+      <div class="card"><h3>Recruiter</h3><p>Recruitment funnel — applicant &rarr; interview &rarr; hired &rarr; rejected &amp; best sources.</p></div>
+      <div class="card"><h3>Team Manager</h3><p>KPI performance scores and training effectiveness per team.</p></div>
+      <div class="card"><h3>Hiring Manager / Reviewer</h3><p>Assess SQL, database design, and data storytelling skills.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- Business Questions -->
+<section id="features">
+  <div class="container">
+    <h2>Business Questions Answered</h2>
+    <p class="subtitle">Every query ties directly to a real HR decision.</p>
+    <div class="grid-2">
+      <div class="card">
+        <h3>&#931; Employee Overview</h3>
+        <p>Total active vs inactive employees. Composition by department, position, gender.</p>
+      </div>
+      <div class="card">
+        <h3>&#36; Payroll Analysis</h3>
+        <p>Average salary, highest salary, salary distribution per department. Ranked by window function.</p>
+      </div>
+      <div class="card">
+        <h3>&#9776; Attendance Patterns</h3>
+        <p>Present / sick / leave / absent distribution. Monthly attendance trends.</p>
+      </div>
+      <div class="card">
+        <h3>&#8617; Turnover Rate</h3>
+        <p>Employee status breakdown. Turnover percentage. Turnover by department.</p>
+      </div>
+      <div class="card">
+        <h3>&#9661; Recruitment Funnel</h3>
+        <p>Applicant &rarr; Interview &rarr; Hired &rarr; Rejected. Best candidate sources. Time-to-hire.</p>
+      </div>
+      <div class="card">
+        <h3>&#9733; Performance &amp; Training</h3>
+        <p>Average KPI per period. Top &amp; bottom performers. Training effectiveness correlation.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Data Generation -->
+<section id="generation">
+  <div class="container">
+    <h2>Data Generation</h2>
+    <p class="subtitle">Realistic dummy data via Python + Faker with controlled distributions.</p>
+    <div class="grid-2">
+      <div class="card">
+        <h3>Salary Formula</h3>
+        <p><code>salary = base_salary_per_grade &times; department_multiplier &times; (1 + noise)</code></p>
+        <p style="margin-top:8px;font-size:0.85rem;color:#64748b;">Grade G1&ndash;G5, dept multiplier 0.90&ndash;1.30, noise &plusmn;8%</p>
+      </div>
+      <div class="card">
+        <h3>Employee Status</h3>
+        <p>~70% Active, ~15% Resigned, ~5% Terminated. Resignation probability spikes at 2&ndash;3 year tenure.</p>
+      </div>
+      <div class="card">
+        <h3>Attendance Pattern</h3>
+        <p>~39,600 rows. Higher Sick/Leave probability on Monday &amp; Friday vs regular weekdays.</p>
+      </div>
+      <div class="card">
+        <h3>Training &rarr; Performance</h3>
+        <p>Weak-positive correlation between course completion and KPI score. Completed courses score ~ N(avg_kpi + 5, 8).</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Tech Stack -->
+<section style="background:#f1f5f9; padding:56px 0;">
+  <div class="container">
+    <h2>Tech Stack</h2>
+    <div class="grid-4">
+      <div class="card" style="text-align:center"><h3>PostgreSQL</h3><p>Database</p></div>
+      <div class="card" style="text-align:center"><h3>Python + Faker</h3><p>Data Generation</p></div>
+      <div class="card" style="text-align:center"><h3>SQL</h3><p>DDL, DML, Window Functions</p></div>
+      <div class="card" style="text-align:center"><h3>Spreadsheet</h3><p>Pivot Table &amp; Charts</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- Key Metrics -->
+<section style="background:#0f172a; color:#fff; padding:56px 0;">
+  <div class="container">
+    <h2 style="color:#fff">Key Metrics</h2>
+    <p class="subtitle" style="color:#94a3b8">Real insights from the generated dataset.</p>
+    <div style="display:grid; grid-template-columns:1fr 1fr 1fr 1fr 1fr; gap:16px;">
+      <div style="text-align:center; padding:20px; background:rgba(255,255,255,0.05); border-radius:10px;">
+        <div style="font-size:2rem; font-weight:700; color:#60a5fa;">300</div>
+        <div style="color:#94a3b8; font-size:0.85rem;">Employees</div>
+      </div>
+      <div style="text-align:center; padding:20px; background:rgba(255,255,255,0.05); border-radius:10px;">
+        <div style="font-size:2rem; font-weight:700; color:#60a5fa;">12.7%</div>
+        <div style="color:#94a3b8; font-size:0.85rem;">Turnover Rate</div>
+      </div>
+      <div style="text-align:center; padding:20px; background:rgba(255,255,255,0.05); border-radius:10px;">
+        <div style="font-size:2rem; font-weight:700; color:#60a5fa;">Rp13M</div>
+        <div style="color:#94a3b8; font-size:0.85rem;">Avg Salary</div>
+      </div>
+      <div style="text-align:center; padding:20px; background:rgba(255,255,255,0.05); border-radius:10px;">
+        <div style="font-size:2rem; font-weight:700; color:#60a5fa;">78.6%</div>
+        <div style="color:#94a3b8; font-size:0.85rem;">Attendance Rate</div>
+      </div>
+      <div style="text-align:center; padding:20px; background:rgba(255,255,255,0.05); border-radius:10px;">
+        <div style="font-size:2rem; font-weight:700; color:#60a5fa;">29%</div>
+        <div style="color:#94a3b8; font-size:0.85rem;">Hire Rate</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Roadmap -->
+<section id="roadmap">
+  <div class="container">
+    <h2>Development Roadmap</h2>
+    <p class="subtitle">4 levels — each delivers a tangible portfolio asset.</p>
+    <div class="roadmap">
+      <div class="roadmap-item">
+        <div class="roadmap-num">1</div>
+        <div>
+          <h3>Database &amp; SQL CRUD</h3>
+          <p>8 relational tables, import CSV data into <code>*_raw</code> tables, CRUD operations verification.</p>
+        </div>
+      </div>
+      <div class="roadmap-item">
+        <div class="roadmap-num">2</div>
+        <div>
+          <h3>Data Cleaning &amp; Analysis</h3>
+          <p>Handle NULLs, duplicates, normalize categories, standardize dates. 15+ analytical SQL queries.</p>
+        </div>
+      </div>
+      <div class="roadmap-item">
+        <div class="roadmap-num">3</div>
+        <div>
+          <h3>Dashboard</h3>
+          <p>Export query results to CSV. Build 5-section pivot table dashboard in Spreadsheet. Optional Power BI port.</p>
+        </div>
+      </div>
+      <div class="roadmap-item">
+        <div class="roadmap-num">4</div>
+        <div>
+          <h3>Documentation &amp; Portfolio</h3>
+          <p>ERD, data dictionary, business rules, README with insights. GitHub commit history per level.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Sample Queries -->
+<section id="queries" style="background:#f1f5f9;">
+  <div class="container">
+    <h2>Sample SQL Queries</h2>
+    <p class="subtitle">Showcasing window functions, subqueries, and aggregation techniques.</p>
+    <div class="grid-2">
+      <div class="card">
+        <h3>Salary Rank by Department</h3>
+        <div class="query-block">
+<span class="kw">SELECT</span> full_name, department_name, salary,<br>
+&nbsp;&nbsp;&nbsp;<span class="fn">RANK</span>() <span class="kw">OVER</span> (<span class="kw">PARTITION BY</span> department_name <span class="kw">ORDER BY</span> salary <span class="kw">DESC</span>) <span class="kw">AS</span> salary_rank<br>
+<span class="kw">FROM</span> employee e<br>
+<span class="kw">JOIN</span> department d <span class="kw">ON</span> e.department_id = d.department_id;
+        </div>
+      </div>
+      <div class="card">
+        <h3>Turnover Rate</h3>
+        <div class="query-block">
+<span class="kw">SELECT</span><br>
+&nbsp;&nbsp;<span class="fn">ROUND</span>(<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="num">100.0</span> * <span class="fn">SUM</span>(<span class="kw">CASE WHEN</span> status &lt;&gt; <span class="cm">'Active'</span> <span class="kw">THEN</span> <span class="num">1</span> <span class="kw">ELSE</span> <span class="num">0</span> <span class="kw">END</span>) / <span class="fn">COUNT</span>(*), <span class="num">2</span><br>
+&nbsp;&nbsp;) <span class="kw">AS</span> turnover_rate_percent<br>
+<span class="kw">FROM</span> employee;
+        </div>
+      </div>
+      <div class="card">
+        <h3>Recruitment Funnel</h3>
+        <div class="query-block">
+<span class="kw">SELECT</span><br>
+&nbsp;&nbsp;status, <span class="fn">COUNT</span>(*) <span class="kw">AS</span> count<br>
+<span class="kw">FROM</span> recruitment<br>
+<span class="kw">GROUP BY</span> status<br>
+<span class="kw">ORDER BY</span> count <span class="kw">DESC</span>;
+        </div>
+      </div>
+      <div class="card">
+        <h3>Avg KPI per Period</h3>
+        <div class="query-block">
+<span class="kw">SELECT</span> period, <span class="fn">AVG</span>(kpi_score) <span class="kw">AS</span> avg_kpi<br>
+<span class="kw">FROM</span> performance<br>
+<span class="kw">GROUP BY</span> period<br>
+<span class="kw">ORDER BY</span> period;
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Dashboard Preview -->
+<section id="dashboard">
+  <div class="container">
+    <h2>Dashboard Sections</h2>
+    <p class="subtitle">5 sub-dashboards covering key HR domains.</p>
+    <div class="grid-3">
+      <div class="card" style="text-align:center">
+        <span class="icon">&#128101;</span>
+        <h3>Employee Overview</h3>
+        <p>Total employee, gender split, department &amp; position distribution.</p>
+      </div>
+      <div class="card" style="text-align:center">
+        <span class="icon">&#128197;</span>
+        <h3>Attendance</h3>
+        <p>Present / sick / leave / absent breakdown. Monthly trends.</p>
+      </div>
+      <div class="card" style="text-align:center">
+        <span class="icon">&#128176;</span>
+        <h3>Payroll</h3>
+        <p>Average salary, highest salary, salary distribution by department.</p>
+      </div>
+      <div class="card" style="text-align:center">
+        <span class="icon">&#128269;</span>
+        <h3>Recruitment</h3>
+        <p>Funnel chart: applicant &rarr; interview &rarr; hired &rarr; rejected.</p>
+      </div>
+      <div class="card" style="text-align:center">
+        <span class="icon">&#127942;</span>
+        <h3>Performance</h3>
+        <p>Average KPI, top performer, lowest performer per period.</p>
+      </div>
+      <div class="card" style="text-align:center; border: 2px dashed #2563eb;">
+        <span class="icon">&#128202;</span>
+        <h3>Power BI (Optional)</h3>
+        <p>Same dashboard rebuilt in Power BI with direct DB connection.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Future Work -->
+<section style="background:#f1f5f9;">
+  <div class="container">
+    <h2>Future Development</h2>
+    <div class="grid-3">
+      <div class="card"><h3>Star Schema</h3><p>Migrate to fact &amp; dimension tables for data warehousing practice.</p></div>
+      <div class="card"><h3>Python ETL</h3><p>Automate data pipeline with pandas — replace manual import process.</p></div>
+      <div class="card"><h3>Predictive Analytics</h3><p>Simple turnover risk prediction using Python.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="container">
+    <p>HR Analytics System &mdash; Portfolio Project for Data Analyst / BI Analyst position</p>
+  </div>
+</footer>
+
+</body>
+</html>

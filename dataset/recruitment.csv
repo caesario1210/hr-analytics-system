@@ -1,0 +1,225 @@
+candidate_id,candidate_name,position,source,status,apply_date,hire_date
+1,Alyssa Williams,Sales Manager,Job Portal,Hired,2024-02-01,2024-02-18
+2,Deborah Clark,Data Analyst,LinkedIn,Rejected,2025-05-13,
+3,Mark Jimenez,Accountant,Job Portal,Applied,2025-03-20,
+4,Maria Turner,Accountant,Job Portal,Hired,2025-05-02,2025-05-30
+5,Melinda Evans,Junior Developer,Company Website,Rejected,2024-07-09,
+6,Brooke Perry,Admin Manager,Job Portal,Rejected,2024-02-26,
+7,Lawrence Edwards,Admin Staff,University,Rejected,2024-12-26,
+8,William Reed,Operations Associate,Company Website,Rejected,2025-07-11,
+9,Jacob Hoffman,Financial Analyst,Job Portal,Applied,2024-11-05,
+10,Bryan Cole,Finance Manager,LinkedIn,Rejected,2024-09-04,
+11,Dylan Cruz,Admin Manager,Company Website,Rejected,2024-04-19,
+12,Victor Barrera,Senior Developer,Job Portal,Rejected,2025-04-22,
+13,Kenneth Edwards,Marketing Manager,LinkedIn,Rejected,2025-09-23,
+14,Zachary Owens,Legal Manager,Job Portal,Interviewed,2025-08-15,
+15,Alexander Landry,HR Staff,Job Portal,Rejected,2025-11-13,
+16,David Aguilar,Operations Associate,Job Portal,Rejected,2025-01-27,
+17,Johnny Khan,Marketing Specialist,LinkedIn,Hired,2024-02-07,2024-04-03
+18,Donna Smith,Operations Associate,Job Portal,Rejected,2025-05-23,
+19,Stephen Luna,Junior Developer,Job Portal,Hired,2024-03-24,2024-04-18
+20,Andrew Williams,Junior Developer,Company Website,Hired,2025-08-16,2025-09-26
+21,Juan Jones,Marketing Manager,Referral,Rejected,2025-03-12,
+22,Joshua Bryan,Marketing Manager,Job Portal,Rejected,2025-01-26,
+23,Barbara Hester,Data Analyst,LinkedIn,Rejected,2025-04-29,
+24,William Grant,Junior Developer,Referral,Interviewed,2024-11-01,
+25,Christina Hicks,Marketing Manager,Company Website,Interviewed,2024-10-10,
+26,Andrew Reeves,Admin Manager,Company Website,Rejected,2025-01-23,
+27,Jesus Obrien,Sales Representative,Referral,Rejected,2025-09-16,
+28,Timothy Flores,Junior Developer,University,Interviewed,2025-02-04,
+29,Nancy Evans MD,Sales Representative,LinkedIn,Hired,2024-11-01,2024-12-10
+30,Katherine Hart,Senior Developer,LinkedIn,Interviewed,2025-10-05,
+31,Isabella Nunez,Operations Manager,Job Portal,Applied,2025-01-03,
+32,Rebecca Swanson,Marketing Specialist,LinkedIn,Rejected,2024-11-19,
+33,Linda Baker,Junior Developer,Job Portal,Rejected,2025-06-18,
+34,Paula Lane,Sales Manager,Job Portal,Rejected,2025-05-24,
+35,John Warren,IT Manager,Referral,Hired,2025-07-14,2025-08-18
+36,Sarah Hernandez,Finance Manager,LinkedIn,Rejected,2025-07-14,
+37,Kenneth Graves,Legal Manager,University,Interviewed,2025-06-12,
+38,Erik Hernandez,IT Manager,Referral,Hired,2024-05-28,2024-06-19
+39,Jonathan Carr,HR Manager,Job Portal,Rejected,2025-06-20,
+40,Nancy Brown,Marketing Manager,Referral,Hired,2025-01-01,2025-01-22
+41,Kristina Bolton,Operations Associate,Job Portal,Interviewed,2024-04-17,
+42,Emily Thompson,Finance Manager,LinkedIn,Rejected,2025-01-06,
+43,Kimberly Lowe,Marketing Manager,Company Website,Hired,2025-12-09,2026-01-13
+44,Maria Steele,Financial Analyst,LinkedIn,Rejected,2025-11-04,
+45,Dr. Douglas Evans,Legal Manager,LinkedIn,Rejected,2025-04-18,
+46,Michele Vaughn,HR Staff,Referral,Interviewed,2024-08-19,
+47,Gregory Peck,Junior Developer,Referral,Hired,2025-01-14,2025-02-05
+48,Donna Berry,HR Staff,LinkedIn,Applied,2025-09-09,
+49,William Cardenas,Legal Manager,University,Rejected,2025-02-25,
+50,Donna Roberts,Senior Developer,Company Website,Hired,2025-08-23,2025-09-21
+51,Thomas Douglas,Accountant,Referral,Rejected,2025-07-08,
+52,Dale Ryan,Admin Manager,LinkedIn,Hired,2025-08-03,2025-09-26
+53,Denise Rodriguez,Accountant,Referral,Hired,2025-12-25,2026-01-11
+54,Dana Santiago,Admin Staff,Referral,Rejected,2025-07-29,
+55,David Garcia,HR Manager,Job Portal,Rejected,2025-02-16,
+56,Ashlee Townsend,Admin Staff,Job Portal,Rejected,2024-09-13,
+57,Vanessa Moore,Admin Manager,Job Portal,Rejected,2024-01-05,
+58,Sherry Woods,IT Manager,University,Rejected,2025-05-22,
+59,Donna Mitchell,Admin Manager,LinkedIn,Hired,2024-06-03,2024-06-24
+60,Ann Andrews,Financial Analyst,LinkedIn,Interviewed,2024-02-15,
+61,Sarah Johnson,Admin Manager,Job Portal,Applied,2025-02-19,
+62,Stephen Thompson,IT Manager,Referral,Rejected,2025-12-16,
+63,Russell French,Sales Representative,LinkedIn,Applied,2025-12-15,
+64,Tonya Howe,Data Analyst,LinkedIn,Rejected,2024-05-24,
+65,Edwin Morrison,Marketing Specialist,LinkedIn,Rejected,2025-11-11,
+66,Mrs. Virginia Daniels,Accountant,University,Rejected,2025-12-22,
+67,Brandi Gordon,Sales Manager,Referral,Hired,2025-01-18,2025-02-23
+68,Brian Martin,Admin Manager,LinkedIn,Rejected,2024-07-30,
+69,Michelle Smith,Accountant,Job Portal,Rejected,2024-12-22,
+70,Laura Todd,Marketing Manager,LinkedIn,Rejected,2024-09-18,
+71,Margaret Sullivan,Data Analyst,Job Portal,Hired,2024-05-16,2024-07-14
+72,Angie Caldwell,Data Analyst,Job Portal,Rejected,2024-11-28,
+73,Mrs. Taylor Smith,Operations Associate,LinkedIn,Rejected,2024-05-23,
+74,Paul Finley,Marketing Manager,Company Website,Rejected,2024-10-24,
+75,Laura Green,Sales Representative,LinkedIn,Rejected,2024-08-22,
+76,Amy Wilson,Financial Analyst,Referral,Rejected,2024-10-06,
+77,Michael Leblanc,Marketing Manager,LinkedIn,Hired,2024-08-26,2024-09-12
+78,Emily Wilson,Sales Representative,Referral,Rejected,2025-11-20,
+79,Holly Walker,Sales Representative,Job Portal,Rejected,2025-12-12,
+80,Jesse Zhang,Sales Representative,LinkedIn,Rejected,2024-04-13,
+81,Joshua Ruiz,HR Manager,LinkedIn,Applied,2024-10-17,
+82,Samantha Gill,Legal Counsel,Referral,Hired,2025-02-21,2025-04-15
+83,Shelley Miller,Finance Manager,Referral,Hired,2025-06-12,2025-08-02
+84,Heidi Stark,Admin Manager,Referral,Rejected,2024-12-12,
+85,Joshua Wagner,Sales Manager,Job Portal,Rejected,2024-03-28,
+86,Carmen Bond,Legal Counsel,Job Portal,Rejected,2025-03-20,
+87,Daniel Aguilar,Senior Developer,Referral,Hired,2024-12-09,2025-01-09
+88,Jill Brown,Operations Associate,Company Website,Rejected,2024-03-11,
+89,Joyce Brown,Admin Manager,University,Rejected,2024-04-12,
+90,Elizabeth Johnson,Legal Manager,Job Portal,Interviewed,2024-12-25,
+91,Nichole Lane,Admin Manager,Job Portal,Hired,2024-07-16,2024-09-13
+92,Michael Weaver,Accountant,Referral,Hired,2024-02-05,2024-03-20
+93,Andrea Peck,Accountant,LinkedIn,Applied,2024-02-16,
+94,Christopher Taylor,Marketing Manager,Job Portal,Rejected,2024-01-25,
+95,Maria Fisher,Finance Manager,Job Portal,Rejected,2025-05-13,
+96,Sergio Knox,Marketing Specialist,Company Website,Rejected,2025-11-23,
+97,Victor Baxter,IT Manager,Referral,Hired,2024-10-18,2024-11-10
+98,Hannah White,Legal Manager,Company Website,Rejected,2024-04-13,
+99,Cameron Irwin,Marketing Specialist,LinkedIn,Interviewed,2025-02-21,
+100,Alexander Evans,Admin Manager,Job Portal,Interviewed,2025-10-10,
+101,Jessica Gray,HR Manager,Referral,Applied,2025-06-07,
+102,Gregory Hill,Sales Manager,LinkedIn,Interviewed,2024-06-27,
+103,Pamela Johnson,Sales Representative,Job Portal,Hired,2025-12-29,2026-02-16
+104,Ralph Stephenson,Operations Associate,Job Portal,Rejected,2025-05-27,
+105,Austin Wheeler,Sales Manager,University,Hired,2024-01-13,2024-02-21
+106,Michele Williams,HR Staff,Job Portal,Rejected,2024-12-12,
+107,Jeffrey Fernandez,Operations Manager,Company Website,Hired,2025-07-29,2025-08-25
+108,Amy Gordon,Sales Representative,University,Rejected,2025-08-08,
+109,Thomas Johnston,Financial Analyst,Referral,Hired,2024-08-12,2024-09-22
+110,Megan Flores,IT Manager,Job Portal,Rejected,2025-03-24,
+111,Victoria Boyd,Marketing Manager,Referral,Hired,2024-08-22,2024-09-17
+112,Antonio Fry,Admin Staff,Referral,Hired,2024-11-17,2025-01-04
+113,Casey Shelton,Operations Associate,LinkedIn,Interviewed,2025-11-14,
+114,William David DDS,Operations Associate,Referral,Hired,2025-03-07,2025-04-13
+115,Melissa Russell,Operations Associate,University,Hired,2025-09-02,2025-10-23
+116,Paul Wells,Legal Counsel,Job Portal,Rejected,2024-08-20,
+117,Scott Thomas,Junior Developer,LinkedIn,Hired,2025-10-21,2025-12-07
+118,Kristina Faulkner,Marketing Manager,Job Portal,Rejected,2024-12-25,
+119,Jasmine Scott,Junior Developer,Job Portal,Interviewed,2025-03-08,
+120,Tammy Boone,Legal Manager,LinkedIn,Hired,2024-09-13,2024-10-10
+121,Sandra Williams,Marketing Specialist,Job Portal,Rejected,2024-03-12,
+122,Lindsey Russo,Legal Manager,Company Website,Rejected,2024-10-19,
+123,Laurie Powers,Operations Associate,Company Website,Hired,2024-05-26,2024-07-24
+124,Sean Cook,Junior Developer,Job Portal,Hired,2024-06-17,2024-07-04
+125,Timothy Hayden,Finance Manager,LinkedIn,Rejected,2025-12-07,
+126,Nicole Rocha,Operations Associate,Job Portal,Interviewed,2024-04-01,
+127,Christine Herman,Data Analyst,Job Portal,Hired,2025-06-24,2025-07-30
+128,Douglas Owens,Accountant,LinkedIn,Hired,2025-03-04,2025-04-29
+129,Dennis Hunt,HR Staff,Referral,Rejected,2025-05-18,
+130,Robert Bowen,HR Manager,LinkedIn,Rejected,2025-01-21,
+131,Suzanne Wood,Senior Developer,Referral,Rejected,2025-08-14,
+132,Sean Figueroa,Accountant,LinkedIn,Hired,2024-11-17,2025-01-15
+133,Timothy Riley,Sales Manager,Company Website,Rejected,2024-01-13,
+134,Craig Hall,Admin Staff,LinkedIn,Rejected,2024-11-20,
+135,Kathryn Pena,HR Staff,LinkedIn,Rejected,2025-03-18,
+136,Phillip Burns,HR Staff,Job Portal,Rejected,2025-06-15,
+137,Katherine Jackson,Junior Developer,Referral,Hired,2025-07-16,2025-08-06
+138,Charles Payne,IT Manager,University,Rejected,2025-09-09,
+139,Kimberly May,Financial Analyst,University,Rejected,2024-05-22,
+140,Sara Jones,Financial Analyst,Company Website,Rejected,2024-02-15,
+141,Pamela Gutierrez,Sales Representative,LinkedIn,Hired,2025-09-27,2025-10-26
+142,Andrea Hernandez,Data Analyst,LinkedIn,Hired,2025-10-16,2025-10-31
+143,Jacqueline Williamson,Admin Manager,LinkedIn,Hired,2024-06-18,2024-08-06
+144,Susan Hopkins,Financial Analyst,Job Portal,Hired,2025-06-01,2025-06-27
+145,Juan Smith,Admin Manager,Company Website,Rejected,2024-01-13,
+146,Kimberly Mitchell,Legal Manager,LinkedIn,Rejected,2025-02-15,
+147,Megan Drake,Data Analyst,Referral,Rejected,2025-01-25,
+148,Thomas Warren,Financial Analyst,LinkedIn,Rejected,2025-12-07,
+149,Joseph Ochoa,Senior Developer,LinkedIn,Rejected,2024-07-06,
+150,Angela Chung,Legal Manager,LinkedIn,Rejected,2024-07-26,
+151,Wanda Perez,HR Staff,Job Portal,Interviewed,2024-12-22,
+152,Angela Frey,HR Staff,LinkedIn,Interviewed,2025-06-15,
+153,Anna Gray,Legal Manager,LinkedIn,Hired,2025-05-19,2025-07-06
+154,Mark Warner,Marketing Manager,University,Hired,2025-03-05,2025-03-28
+155,Mr. Richard Knight PhD,Legal Counsel,LinkedIn,Rejected,2024-03-05,
+156,Tamara Hall,Admin Manager,LinkedIn,Hired,2024-03-15,2024-04-01
+157,Stacy Alvarez,Admin Staff,LinkedIn,Rejected,2025-12-01,
+158,Melinda Ramirez,Marketing Manager,Company Website,Hired,2024-02-06,2024-04-04
+159,Amanda Mcfarland,Admin Manager,Referral,Rejected,2025-02-25,
+160,Daniel Thomas,Accountant,LinkedIn,Hired,2024-09-01,2024-10-12
+161,Jennifer Jones,Operations Associate,University,Rejected,2025-09-29,
+162,Lacey Atkinson,HR Manager,Referral,Hired,2024-05-06,2024-06-03
+163,Evelyn Campos,Sales Representative,Referral,Rejected,2025-06-09,
+164,Melissa Miller,HR Staff,Job Portal,Rejected,2024-04-18,
+165,Amy Kim,HR Staff,LinkedIn,Hired,2025-08-02,2025-08-21
+166,Larry Austin,Marketing Manager,Job Portal,Hired,2025-10-13,2025-10-30
+167,Raymond Johnson,Legal Manager,LinkedIn,Interviewed,2025-04-07,
+168,Joanne Perez,HR Staff,Company Website,Applied,2024-07-31,
+169,Jessica Frazier,Accountant,LinkedIn,Interviewed,2025-03-05,
+170,Raymond Phillips,Legal Manager,Job Portal,Rejected,2025-05-28,
+171,Angela Moore,Data Analyst,LinkedIn,Rejected,2024-07-10,
+172,Brittany Price,Admin Staff,Job Portal,Interviewed,2025-07-06,
+173,Aaron Parker,HR Staff,University,Hired,2024-10-07,2024-11-27
+174,Ashley Miller,Financial Analyst,Referral,Applied,2024-10-06,
+175,Justin Russell,HR Manager,Company Website,Interviewed,2024-11-30,
+176,Julian Carlson,Marketing Specialist,Referral,Rejected,2024-01-21,
+177,James Carter,Finance Manager,LinkedIn,Hired,2025-09-01,2025-09-19
+178,Misty Hansen,Operations Associate,Job Portal,Applied,2024-10-28,
+179,Carolyn James,IT Manager,Job Portal,Interviewed,2024-07-07,
+180,Derrick Thomas,Data Analyst,Company Website,Rejected,2024-04-17,
+181,Jason Washington,Admin Staff,Company Website,Hired,2024-05-09,2024-05-31
+182,Tony Le,Operations Manager,Job Portal,Hired,2024-02-29,2024-04-06
+183,Christina Rodriguez,Legal Manager,Job Portal,Interviewed,2025-01-20,
+184,James Skinner,Legal Counsel,Referral,Rejected,2024-08-24,
+185,Erin Cook,Finance Manager,Referral,Rejected,2024-10-22,
+186,Marilyn Wheeler,Data Analyst,Referral,Rejected,2025-09-25,
+187,Travis Harris,Data Analyst,Job Portal,Interviewed,2024-08-21,
+188,James Flores,Marketing Manager,Job Portal,Rejected,2024-09-01,
+189,Katherine Johnston,HR Staff,LinkedIn,Rejected,2025-07-24,
+190,Douglas Hartman,Senior Developer,Company Website,Hired,2024-07-07,2024-08-24
+191,Justin Vargas,Operations Manager,LinkedIn,Interviewed,2024-10-10,
+192,Randall Johnson,Data Analyst,LinkedIn,Rejected,2025-02-27,
+193,Michael Gonzales,Accountant,Referral,Rejected,2025-07-18,
+194,Andrea Abbott,Sales Representative,Job Portal,Applied,2024-08-14,
+195,Jonathan Schultz,Operations Manager,Company Website,Rejected,2025-09-09,
+196,Christian Henderson,Senior Developer,University,Interviewed,2024-07-06,
+197,William Mendoza,Marketing Manager,Referral,Interviewed,2024-10-19,
+198,Tammy Kane,Admin Staff,Referral,Applied,2024-11-07,
+199,Rachel Ward,Sales Representative,Job Portal,Rejected,2024-11-20,
+200,Linda Rocha,Operations Associate,Company Website,Rejected,2025-11-26,
+201,Mary Kelly,Finance Manager,LinkedIn,Rejected,2024-03-25,
+202,Kristine Newman,Legal Counsel,LinkedIn,Rejected,2025-05-17,
+203,Paul Sheppard,Marketing Specialist,Job Portal,Rejected,2025-05-17,
+204,Brett Walker,Admin Staff,Referral,Hired,2024-11-30,2025-01-07
+205,Lauren Johnston,Junior Developer,Job Portal,Applied,2025-08-03,
+206,Joel Frazier,IT Manager,LinkedIn,Hired,2024-12-12,2025-01-24
+207,Haley Johnson,Accountant,Referral,Hired,2025-06-20,2025-07-31
+208,Thomas Miller,Data Analyst,LinkedIn,Rejected,2024-03-22,
+209,Brenda Collins,Admin Staff,Referral,Hired,2025-10-07,2025-11-13
+210,Kelly Bailey,Legal Manager,Job Portal,Interviewed,2024-12-19,
+211,Michael Flores,Legal Manager,Referral,Interviewed,2024-03-16,
+212,Michael Johnson,Junior Developer,Company Website,Applied,2024-08-21,
+213,Megan Martin,Legal Manager,Job Portal,Rejected,2024-09-23,
+214,Christopher Moore,Marketing Specialist,LinkedIn,Hired,2025-07-29,2025-09-20
+215,Joel Salinas,Sales Representative,Company Website,Hired,2025-03-10,2025-05-03
+216,Martin Reynolds,HR Staff,Job Portal,Rejected,2025-05-04,
+217,Sonya Cole,Junior Developer,LinkedIn,Rejected,2024-01-23,
+218,Michael Harris,Senior Developer,Company Website,Hired,2024-11-29,2025-01-23
+219,Rebecca Ray,Financial Analyst,LinkedIn,Rejected,2025-08-07,
+220,Chelsea Nguyen,Financial Analyst,University,Rejected,2025-09-12,
+221,Michael Burns,Admin Manager,University,Interviewed,2024-12-21,
+222,James Long,Legal Manager,Company Website,Hired,2025-05-11,2025-06-02
+223,Ryan Williamson,Operations Manager,Referral,Interviewed,2024-03-29,
+224,Rebecca Sellers,Sales Manager,LinkedIn,Rejected,2025-09-24,

@@ -1,0 +1,604 @@
+training_id,employee_id,course_name,completion,score
+1,1,Cloud Computing,Completed,96.87
+2,1,Conflict Resolution,In Progress,
+3,1,Time Management,Not Started,
+4,2,Communication Skills,Completed,73.49
+5,2,Public Speaking,Completed,70.93
+6,2,Conflict Resolution,Completed,71.51
+7,3,Cloud Computing,Completed,81.5
+8,3,Public Speaking,Completed,71.37
+9,4,Cloud Computing,Completed,79.92
+10,4,Conflict Resolution,Completed,92.23
+11,4,Data Literacy,Completed,79.24
+12,5,Time Management,Completed,76.51
+13,5,Conflict Resolution,Completed,84.36
+14,5,Public Speaking,Completed,80.2
+15,6,Data Literacy,Completed,85.3
+16,7,Time Management,Completed,58.8
+17,8,Advanced Excel,Completed,77.03
+18,9,Time Management,Completed,84.79
+19,10,Conflict Resolution,Completed,79.29
+20,10,Communication Skills,Completed,96.11
+21,11,Conflict Resolution,Completed,86.32
+22,11,Project Management,Completed,88.51
+23,12,Public Speaking,In Progress,
+24,12,Project Management,Completed,84.31
+25,12,Conflict Resolution,Completed,84.02
+26,13,Advanced Excel,Completed,95.57
+27,13,Public Speaking,Completed,96.94
+28,13,Data Literacy,Completed,100.0
+29,14,Time Management,Completed,68.72
+30,14,Conflict Resolution,Completed,72.93
+31,14,Data Literacy,Completed,72.49
+32,15,Time Management,Completed,91.12
+33,15,Leadership Essentials,In Progress,
+34,15,Public Speaking,Completed,70.88
+35,16,Data Literacy,Completed,94.42
+36,17,Time Management,Completed,77.85
+37,17,Public Speaking,Completed,82.06
+38,17,Project Management,Completed,79.05
+39,18,Advanced Excel,Not Started,
+40,18,Project Management,Completed,80.2
+41,19,Public Speaking,Completed,97.38
+42,19,Time Management,Completed,81.88
+43,19,Communication Skills,Completed,88.13
+44,20,Leadership Essentials,Not Started,
+45,20,Data Literacy,Completed,81.4
+46,20,Project Management,Completed,92.77
+47,21,Public Speaking,Completed,87.52
+48,21,Time Management,Completed,96.32
+49,22,Cloud Computing,Not Started,
+50,23,Cloud Computing,Not Started,
+51,24,Advanced Excel,Completed,59.41
+52,24,Cloud Computing,In Progress,
+53,25,Cloud Computing,In Progress,
+54,25,Time Management,Completed,68.18
+55,26,Leadership Essentials,Completed,96.99
+56,26,Time Management,Not Started,
+57,27,Advanced Excel,Completed,83.46
+58,27,Data Literacy,Completed,95.35
+59,27,Public Speaking,Completed,98.49
+60,28,Conflict Resolution,In Progress,
+61,29,Data Literacy,In Progress,
+62,30,Data Literacy,Completed,87.62
+63,31,Communication Skills,Completed,76.71
+64,32,Conflict Resolution,Not Started,
+65,33,Data Literacy,Completed,56.87
+66,34,Leadership Essentials,Not Started,
+67,35,Public Speaking,Completed,81.29
+68,35,Communication Skills,Completed,89.92
+69,36,Project Management,Completed,97.93
+70,36,Advanced Excel,Completed,99.95
+71,36,Communication Skills,Completed,100.0
+72,37,Public Speaking,Completed,95.55
+73,38,Conflict Resolution,Not Started,
+74,38,Cloud Computing,In Progress,
+75,39,Public Speaking,Not Started,
+76,40,Data Literacy,In Progress,
+77,40,Leadership Essentials,In Progress,
+78,41,Data Literacy,Completed,90.5
+79,41,Project Management,Completed,75.67
+80,42,Conflict Resolution,Completed,78.97
+81,42,Data Literacy,In Progress,
+82,42,Project Management,Completed,85.58
+83,43,Leadership Essentials,In Progress,
+84,43,Advanced Excel,Completed,86.63
+85,43,Cloud Computing,Completed,84.1
+86,44,Communication Skills,Completed,79.96
+87,44,Conflict Resolution,Completed,86.05
+88,44,Public Speaking,Completed,76.34
+89,45,Leadership Essentials,Completed,83.38
+90,46,Public Speaking,Completed,84.44
+91,46,Project Management,Completed,75.09
+92,47,Leadership Essentials,Completed,76.04
+93,47,Advanced Excel,Completed,79.3
+94,47,Public Speaking,Completed,61.26
+95,48,Project Management,Not Started,
+96,49,Communication Skills,Completed,75.87
+97,49,Leadership Essentials,Completed,57.13
+98,50,Advanced Excel,Completed,76.41
+99,50,Public Speaking,Completed,62.37
+100,51,Data Literacy,Completed,71.39
+101,52,Communication Skills,Completed,98.46
+102,53,Time Management,Completed,65.48
+103,53,Communication Skills,Not Started,
+104,54,Time Management,Completed,80.63
+105,54,Conflict Resolution,Completed,82.3
+106,55,Cloud Computing,Completed,81.3
+107,55,Communication Skills,In Progress,
+108,55,Time Management,Completed,84.98
+109,56,Data Literacy,Completed,85.09
+110,56,Advanced Excel,Completed,76.76
+111,57,Cloud Computing,Completed,81.2
+112,57,Project Management,In Progress,
+113,57,Advanced Excel,In Progress,
+114,58,Data Literacy,Completed,70.82
+115,58,Advanced Excel,Completed,64.89
+116,59,Time Management,Completed,63.64
+117,59,Advanced Excel,Completed,80.98
+118,59,Public Speaking,Not Started,
+119,60,Leadership Essentials,Completed,61.14
+120,61,Leadership Essentials,Completed,81.4
+121,62,Cloud Computing,Completed,72.33
+122,63,Data Literacy,Not Started,
+123,63,Leadership Essentials,Completed,69.23
+124,63,Project Management,Completed,86.19
+125,64,Cloud Computing,Completed,57.18
+126,65,Data Literacy,Completed,73.13
+127,65,Conflict Resolution,Completed,61.86
+128,65,Advanced Excel,Completed,73.2
+129,66,Public Speaking,Completed,61.56
+130,67,Data Literacy,Completed,72.48
+131,68,Public Speaking,Completed,67.14
+132,69,Advanced Excel,In Progress,
+133,69,Data Literacy,Completed,82.1
+134,70,Time Management,Completed,96.3
+135,70,Conflict Resolution,Completed,91.16
+136,71,Data Literacy,Completed,66.38
+137,71,Public Speaking,Completed,72.57
+138,72,Project Management,Completed,68.18
+139,72,Conflict Resolution,Completed,73.66
+140,73,Advanced Excel,In Progress,
+141,73,Project Management,In Progress,
+142,74,Leadership Essentials,Completed,100.0
+143,74,Conflict Resolution,Completed,92.76
+144,74,Advanced Excel,Completed,83.48
+145,75,Data Literacy,Completed,72.85
+146,76,Project Management,Completed,59.02
+147,77,Data Literacy,In Progress,
+148,78,Cloud Computing,Completed,77.75
+149,78,Project Management,Completed,63.64
+150,79,Data Literacy,In Progress,
+151,80,Public Speaking,Completed,71.01
+152,80,Communication Skills,In Progress,
+153,80,Conflict Resolution,Completed,59.99
+154,81,Data Literacy,In Progress,
+155,81,Advanced Excel,Completed,100.0
+156,81,Cloud Computing,Completed,81.6
+157,82,Project Management,Completed,83.98
+158,83,Advanced Excel,Completed,93.34
+159,83,Cloud Computing,Completed,100.0
+160,84,Communication Skills,Completed,90.31
+161,84,Data Literacy,Completed,93.52
+162,84,Cloud Computing,Completed,100.0
+163,85,Time Management,Completed,96.02
+164,85,Communication Skills,Completed,88.37
+165,85,Public Speaking,In Progress,
+166,86,Time Management,Not Started,
+167,86,Advanced Excel,Completed,75.04
+168,87,Data Literacy,Completed,72.45
+169,87,Time Management,Completed,92.29
+170,88,Time Management,Completed,95.05
+171,88,Conflict Resolution,In Progress,
+172,89,Public Speaking,In Progress,
+173,90,Advanced Excel,Completed,81.34
+174,91,Project Management,Completed,84.44
+175,91,Public Speaking,Completed,58.97
+176,91,Advanced Excel,Not Started,
+177,92,Leadership Essentials,In Progress,
+178,93,Data Literacy,Completed,77.49
+179,93,Cloud Computing,Not Started,
+180,94,Conflict Resolution,Completed,97.45
+181,94,Cloud Computing,Completed,100.0
+182,94,Advanced Excel,Not Started,
+183,95,Conflict Resolution,Not Started,
+184,95,Data Literacy,Completed,80.87
+185,96,Public Speaking,Completed,61.21
+186,97,Leadership Essentials,Completed,63.03
+187,97,Communication Skills,Not Started,
+188,98,Communication Skills,In Progress,
+189,99,Conflict Resolution,Completed,89.74
+190,100,Conflict Resolution,Completed,52.75
+191,100,Advanced Excel,In Progress,
+192,100,Leadership Essentials,Completed,46.38
+193,101,Communication Skills,Completed,59.64
+194,101,Project Management,Completed,73.45
+195,101,Advanced Excel,Not Started,
+196,102,Data Literacy,Completed,86.18
+197,102,Project Management,Completed,84.79
+198,102,Time Management,Completed,76.28
+199,103,Project Management,Completed,80.85
+200,103,Data Literacy,Completed,99.39
+201,103,Conflict Resolution,Not Started,
+202,104,Leadership Essentials,In Progress,
+203,104,Public Speaking,Completed,69.21
+204,105,Communication Skills,Completed,65.26
+205,105,Conflict Resolution,Not Started,
+206,105,Data Literacy,In Progress,
+207,106,Time Management,Completed,85.99
+208,106,Leadership Essentials,Completed,91.82
+209,106,Data Literacy,Not Started,
+210,107,Advanced Excel,Completed,42.19
+211,107,Data Literacy,In Progress,
+212,107,Project Management,In Progress,
+213,108,Public Speaking,Completed,79.23
+214,108,Time Management,Completed,79.0
+215,109,Project Management,Completed,99.38
+216,109,Leadership Essentials,Completed,92.98
+217,109,Public Speaking,Completed,82.66
+218,110,Public Speaking,Completed,93.23
+219,111,Conflict Resolution,Completed,88.01
+220,111,Public Speaking,Completed,75.18
+221,111,Time Management,Completed,84.04
+222,112,Data Literacy,Completed,88.32
+223,112,Public Speaking,Completed,70.54
+224,112,Leadership Essentials,Completed,68.69
+225,113,Project Management,In Progress,
+226,113,Advanced Excel,Completed,77.36
+227,113,Conflict Resolution,Not Started,
+228,114,Communication Skills,Completed,79.37
+229,115,Cloud Computing,Completed,86.19
+230,115,Leadership Essentials,Completed,77.72
+231,116,Conflict Resolution,Completed,82.14
+232,116,Advanced Excel,Completed,81.81
+233,116,Time Management,Completed,77.47
+234,117,Conflict Resolution,Not Started,
+235,117,Project Management,In Progress,
+236,118,Communication Skills,Not Started,
+237,118,Cloud Computing,Completed,68.88
+238,118,Project Management,Completed,54.89
+239,119,Cloud Computing,Completed,62.33
+240,119,Data Literacy,Completed,75.2
+241,120,Advanced Excel,In Progress,
+242,120,Conflict Resolution,Completed,84.74
+243,121,Public Speaking,Completed,72.86
+244,122,Time Management,Not Started,
+245,122,Project Management,Completed,72.33
+246,123,Public Speaking,Completed,65.01
+247,124,Project Management,Completed,71.24
+248,124,Conflict Resolution,Completed,96.63
+249,124,Leadership Essentials,Completed,88.09
+250,125,Project Management,Not Started,
+251,126,Cloud Computing,Completed,87.81
+252,126,Time Management,Completed,78.44
+253,127,Project Management,Completed,61.15
+254,127,Communication Skills,In Progress,
+255,128,Public Speaking,Completed,82.02
+256,128,Advanced Excel,Completed,79.88
+257,128,Cloud Computing,In Progress,
+258,129,Project Management,Completed,72.05
+259,130,Conflict Resolution,Completed,75.71
+260,131,Leadership Essentials,Completed,83.98
+261,131,Data Literacy,Completed,78.15
+262,132,Public Speaking,Completed,76.68
+263,132,Conflict Resolution,In Progress,
+264,132,Time Management,In Progress,
+265,133,Public Speaking,Completed,92.65
+266,133,Data Literacy,Completed,89.38
+267,134,Project Management,Not Started,
+268,135,Conflict Resolution,Completed,88.99
+269,135,Data Literacy,Completed,84.54
+270,136,Public Speaking,Completed,94.13
+271,136,Leadership Essentials,In Progress,
+272,137,Cloud Computing,Completed,62.95
+273,137,Project Management,In Progress,
+274,138,Conflict Resolution,Completed,64.34
+275,139,Advanced Excel,Not Started,
+276,139,Public Speaking,Completed,100.0
+277,140,Cloud Computing,Completed,65.23
+278,140,Public Speaking,Completed,67.52
+279,140,Project Management,Completed,62.92
+280,141,Communication Skills,Completed,53.09
+281,141,Project Management,Completed,68.9
+282,142,Data Literacy,Completed,97.49
+283,143,Data Literacy,Completed,67.51
+284,143,Leadership Essentials,Not Started,
+285,143,Communication Skills,Completed,74.85
+286,144,Project Management,Completed,78.89
+287,144,Leadership Essentials,Completed,74.16
+288,145,Leadership Essentials,Completed,78.01
+289,145,Data Literacy,Completed,82.46
+290,146,Time Management,Completed,91.52
+291,146,Public Speaking,Completed,95.76
+292,146,Data Literacy,Completed,94.34
+293,147,Cloud Computing,Completed,85.57
+294,147,Time Management,Completed,71.66
+295,147,Public Speaking,Not Started,
+296,148,Leadership Essentials,Completed,84.27
+297,149,Public Speaking,Completed,75.11
+298,149,Project Management,Completed,93.05
+299,149,Time Management,Completed,78.46
+300,150,Time Management,Completed,96.25
+301,150,Leadership Essentials,Completed,91.02
+302,151,Time Management,Completed,39.94
+303,151,Cloud Computing,Completed,55.67
+304,152,Communication Skills,In Progress,
+305,152,Time Management,Completed,69.2
+306,153,Project Management,Completed,84.43
+307,154,Advanced Excel,In Progress,
+308,154,Data Literacy,Completed,93.94
+309,155,Public Speaking,Completed,68.15
+310,156,Time Management,Completed,100.0
+311,156,Conflict Resolution,In Progress,
+312,157,Project Management,Completed,38.75
+313,158,Time Management,Completed,80.02
+314,158,Leadership Essentials,Completed,80.07
+315,158,Communication Skills,Not Started,
+316,159,Data Literacy,Not Started,
+317,160,Advanced Excel,Completed,86.07
+318,161,Project Management,Completed,92.18
+319,162,Time Management,Completed,69.56
+320,162,Data Literacy,Completed,53.21
+321,163,Project Management,Completed,64.07
+322,163,Data Literacy,In Progress,
+323,163,Public Speaking,Completed,69.75
+324,164,Data Literacy,Completed,94.04
+325,164,Advanced Excel,Completed,100.0
+326,165,Data Literacy,In Progress,
+327,165,Leadership Essentials,Not Started,
+328,165,Conflict Resolution,Not Started,
+329,166,Conflict Resolution,Completed,100.0
+330,166,Data Literacy,Completed,100.0
+331,167,Data Literacy,Completed,76.02
+332,168,Leadership Essentials,Completed,68.96
+333,168,Time Management,Completed,68.81
+334,168,Public Speaking,In Progress,
+335,169,Communication Skills,Completed,74.7
+336,170,Communication Skills,In Progress,
+337,171,Conflict Resolution,In Progress,
+338,171,Project Management,Completed,86.74
+339,171,Advanced Excel,Completed,91.35
+340,172,Conflict Resolution,Completed,100.0
+341,173,Conflict Resolution,In Progress,
+342,173,Project Management,Completed,66.7
+343,174,Time Management,Completed,68.49
+344,175,Conflict Resolution,Completed,96.42
+345,176,Conflict Resolution,Completed,74.23
+346,176,Public Speaking,Completed,78.23
+347,177,Data Literacy,In Progress,
+348,177,Public Speaking,Completed,85.33
+349,177,Communication Skills,Completed,100.0
+350,178,Data Literacy,Completed,99.68
+351,178,Conflict Resolution,Completed,73.48
+352,179,Communication Skills,Completed,77.16
+353,180,Communication Skills,Completed,64.31
+354,180,Time Management,Completed,80.82
+355,180,Project Management,Completed,90.96
+356,181,Data Literacy,In Progress,
+357,181,Public Speaking,Completed,95.12
+358,182,Project Management,Completed,83.86
+359,183,Communication Skills,Completed,79.04
+360,183,Conflict Resolution,Completed,91.91
+361,184,Project Management,Completed,75.09
+362,184,Leadership Essentials,Not Started,
+363,185,Public Speaking,In Progress,
+364,185,Advanced Excel,Completed,79.77
+365,186,Public Speaking,Completed,75.74
+366,186,Leadership Essentials,In Progress,
+367,187,Time Management,Completed,48.32
+368,187,Advanced Excel,Completed,55.49
+369,187,Conflict Resolution,Completed,73.98
+370,188,Communication Skills,Completed,64.27
+371,188,Cloud Computing,Completed,69.43
+372,189,Conflict Resolution,Completed,86.61
+373,189,Leadership Essentials,Completed,95.49
+374,190,Time Management,Completed,79.37
+375,191,Conflict Resolution,Completed,66.74
+376,191,Data Literacy,Completed,66.54
+377,191,Cloud Computing,Completed,61.83
+378,192,Project Management,Completed,69.95
+379,193,Public Speaking,Completed,73.89
+380,194,Communication Skills,Not Started,
+381,195,Conflict Resolution,Completed,75.43
+382,195,Project Management,Not Started,
+383,196,Data Literacy,Not Started,
+384,196,Project Management,Completed,78.01
+385,196,Cloud Computing,Completed,69.67
+386,197,Public Speaking,Completed,55.75
+387,198,Project Management,Completed,100.0
+388,198,Leadership Essentials,Completed,100.0
+389,199,Communication Skills,In Progress,
+390,199,Time Management,In Progress,
+391,199,Leadership Essentials,Completed,82.6
+392,200,Cloud Computing,Completed,100.0
+393,201,Advanced Excel,Completed,66.42
+394,201,Time Management,In Progress,
+395,201,Communication Skills,Completed,93.08
+396,202,Public Speaking,In Progress,
+397,202,Communication Skills,Completed,75.84
+398,202,Time Management,Completed,85.84
+399,203,Public Speaking,Not Started,
+400,203,Leadership Essentials,Not Started,
+401,204,Time Management,In Progress,
+402,204,Communication Skills,Completed,89.49
+403,204,Data Literacy,Completed,90.59
+404,205,Public Speaking,In Progress,
+405,205,Data Literacy,Completed,100.0
+406,205,Cloud Computing,Not Started,
+407,206,Communication Skills,In Progress,
+408,206,Time Management,Completed,88.98
+409,207,Leadership Essentials,In Progress,
+410,208,Data Literacy,Completed,80.24
+411,208,Time Management,Completed,97.55
+412,208,Advanced Excel,Completed,89.31
+413,209,Public Speaking,Completed,70.2
+414,210,Communication Skills,Completed,92.57
+415,210,Cloud Computing,Completed,87.47
+416,211,Public Speaking,In Progress,
+417,212,Leadership Essentials,Completed,89.02
+418,212,Communication Skills,In Progress,
+419,212,Data Literacy,Completed,84.23
+420,213,Cloud Computing,Completed,100.0
+421,214,Data Literacy,In Progress,
+422,214,Cloud Computing,Completed,81.89
+423,215,Project Management,Completed,65.69
+424,215,Advanced Excel,Completed,65.08
+425,215,Communication Skills,Completed,54.78
+426,216,Public Speaking,Not Started,
+427,216,Cloud Computing,In Progress,
+428,216,Data Literacy,Not Started,
+429,217,Conflict Resolution,Completed,72.43
+430,218,Project Management,Completed,80.27
+431,219,Conflict Resolution,In Progress,
+432,219,Communication Skills,In Progress,
+433,220,Leadership Essentials,In Progress,
+434,221,Conflict Resolution,Completed,66.18
+435,222,Advanced Excel,Completed,89.04
+436,222,Communication Skills,Not Started,
+437,222,Project Management,Completed,77.25
+438,223,Advanced Excel,Completed,76.52
+439,223,Public Speaking,Completed,73.32
+440,224,Public Speaking,Completed,83.41
+441,224,Cloud Computing,Completed,90.65
+442,225,Leadership Essentials,Completed,81.95
+443,225,Advanced Excel,Completed,84.53
+444,225,Cloud Computing,Completed,71.96
+445,226,Public Speaking,Completed,91.4
+446,226,Cloud Computing,Completed,94.87
+447,227,Conflict Resolution,In Progress,
+448,227,Advanced Excel,In Progress,
+449,227,Public Speaking,Completed,71.31
+450,228,Project Management,Completed,85.28
+451,229,Advanced Excel,Completed,89.98
+452,229,Time Management,In Progress,
+453,229,Public Speaking,Completed,72.67
+454,230,Leadership Essentials,Completed,72.1
+455,231,Data Literacy,Completed,84.02
+456,231,Communication Skills,Completed,70.06
+457,232,Cloud Computing,Completed,77.67
+458,232,Public Speaking,Completed,60.14
+459,232,Advanced Excel,Completed,76.05
+460,233,Project Management,Completed,60.18
+461,233,Public Speaking,Completed,73.41
+462,234,Conflict Resolution,In Progress,
+463,234,Time Management,Not Started,
+464,234,Communication Skills,Completed,68.2
+465,235,Advanced Excel,Completed,70.97
+466,236,Advanced Excel,Completed,76.01
+467,236,Project Management,Not Started,
+468,236,Cloud Computing,Completed,86.16
+469,237,Project Management,In Progress,
+470,237,Communication Skills,Completed,71.72
+471,237,Public Speaking,Completed,58.73
+472,238,Conflict Resolution,Completed,66.59
+473,238,Communication Skills,Completed,57.95
+474,238,Cloud Computing,Completed,60.1
+475,239,Public Speaking,In Progress,
+476,240,Advanced Excel,Completed,85.55
+477,240,Conflict Resolution,Completed,85.79
+478,240,Leadership Essentials,Completed,94.46
+479,241,Project Management,Completed,65.99
+480,241,Leadership Essentials,In Progress,
+481,242,Cloud Computing,Completed,96.14
+482,243,Time Management,In Progress,
+483,243,Advanced Excel,Completed,81.87
+484,243,Public Speaking,Completed,72.24
+485,244,Time Management,Completed,100.0
+486,244,Project Management,Completed,100.0
+487,244,Data Literacy,Completed,100.0
+488,245,Project Management,In Progress,
+489,245,Data Literacy,Completed,90.16
+490,245,Cloud Computing,Completed,87.57
+491,246,Conflict Resolution,Completed,67.98
+492,246,Time Management,In Progress,
+493,247,Project Management,Completed,83.6
+494,247,Leadership Essentials,Completed,100.0
+495,247,Time Management,Completed,99.72
+496,248,Conflict Resolution,Completed,98.08
+497,248,Advanced Excel,Completed,82.57
+498,248,Time Management,Completed,92.29
+499,249,Time Management,Completed,73.26
+500,249,Data Literacy,Completed,74.8
+501,250,Leadership Essentials,Completed,89.81
+502,251,Leadership Essentials,Completed,95.98
+503,251,Time Management,Completed,84.97
+504,251,Communication Skills,Completed,85.68
+505,252,Data Literacy,Completed,78.75
+506,253,Data Literacy,In Progress,
+507,253,Leadership Essentials,Completed,85.34
+508,254,Cloud Computing,Completed,86.65
+509,254,Leadership Essentials,Completed,84.74
+510,255,Cloud Computing,Not Started,
+511,255,Conflict Resolution,In Progress,
+512,255,Communication Skills,Completed,73.06
+513,256,Project Management,Completed,85.19
+514,256,Leadership Essentials,In Progress,
+515,257,Communication Skills,Not Started,
+516,257,Cloud Computing,In Progress,
+517,257,Conflict Resolution,Completed,68.97
+518,258,Conflict Resolution,In Progress,
+519,258,Cloud Computing,Completed,93.05
+520,259,Public Speaking,Completed,84.81
+521,260,Cloud Computing,Not Started,
+522,261,Leadership Essentials,Not Started,
+523,261,Advanced Excel,Completed,79.21
+524,262,Public Speaking,In Progress,
+525,262,Cloud Computing,Completed,80.97
+526,262,Leadership Essentials,Completed,84.54
+527,263,Communication Skills,Completed,83.0
+528,263,Leadership Essentials,Completed,73.95
+529,264,Time Management,Completed,55.78
+530,264,Conflict Resolution,In Progress,
+531,264,Public Speaking,Completed,58.57
+532,265,Communication Skills,In Progress,
+533,265,Data Literacy,Not Started,
+534,266,Communication Skills,Completed,84.08
+535,266,Advanced Excel,Completed,86.29
+536,267,Conflict Resolution,Completed,79.82
+537,268,Advanced Excel,Completed,80.57
+538,269,Advanced Excel,Completed,57.65
+539,270,Project Management,Completed,78.69
+540,270,Conflict Resolution,Completed,72.35
+541,270,Time Management,Completed,64.07
+542,271,Leadership Essentials,In Progress,
+543,271,Conflict Resolution,Completed,83.65
+544,272,Time Management,Completed,72.12
+545,273,Leadership Essentials,Not Started,
+546,273,Data Literacy,In Progress,
+547,273,Public Speaking,Completed,100.0
+548,274,Communication Skills,Completed,61.37
+549,274,Public Speaking,Completed,89.69
+550,275,Public Speaking,Completed,65.22
+551,276,Cloud Computing,In Progress,
+552,276,Advanced Excel,Completed,100.0
+553,276,Communication Skills,Completed,100.0
+554,277,Data Literacy,Completed,60.72
+555,277,Leadership Essentials,Completed,49.41
+556,278,Communication Skills,Completed,93.17
+557,278,Conflict Resolution,Completed,79.0
+558,278,Time Management,Completed,87.29
+559,279,Data Literacy,Completed,81.94
+560,280,Data Literacy,Completed,91.55
+561,280,Conflict Resolution,Completed,97.7
+562,281,Advanced Excel,In Progress,
+563,281,Cloud Computing,Completed,76.71
+564,281,Project Management,Completed,80.06
+565,282,Data Literacy,Completed,85.93
+566,283,Time Management,Completed,81.54
+567,283,Data Literacy,In Progress,
+568,283,Advanced Excel,Completed,79.35
+569,284,Conflict Resolution,Completed,86.11
+570,285,Cloud Computing,Completed,93.62
+571,286,Project Management,Not Started,
+572,286,Time Management,Completed,69.04
+573,287,Time Management,Completed,57.6
+574,287,Data Literacy,Completed,65.75
+575,287,Cloud Computing,Completed,67.7
+576,288,Public Speaking,In Progress,
+577,289,Conflict Resolution,Completed,56.62
+578,289,Cloud Computing,Not Started,
+579,290,Leadership Essentials,Completed,100.0
+580,290,Data Literacy,In Progress,
+581,290,Time Management,Completed,88.48
+582,291,Leadership Essentials,Completed,55.0
+583,292,Communication Skills,In Progress,
+584,292,Data Literacy,Completed,66.49
+585,292,Public Speaking,Completed,70.71
+586,293,Public Speaking,Completed,76.97
+587,293,Project Management,Completed,69.04
+588,294,Time Management,Not Started,
+589,294,Public Speaking,In Progress,
+590,295,Conflict Resolution,Completed,93.47
+591,296,Data Literacy,Completed,74.26
+592,296,Conflict Resolution,Completed,60.65
+593,297,Conflict Resolution,Not Started,
+594,297,Public Speaking,Completed,100.0
+595,297,Communication Skills,Completed,100.0
+596,298,Leadership Essentials,Completed,93.64
+597,298,Conflict Resolution,Completed,89.33
+598,298,Cloud Computing,Not Started,
+599,299,Communication Skills,Completed,84.99
+600,299,Project Management,In Progress,
+601,300,Conflict Resolution,In Progress,
+602,300,Data Literacy,Completed,87.07
+603,300,Public Speaking,Completed,81.86

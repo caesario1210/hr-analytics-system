@@ -1,0 +1,20 @@
+position_id,position_name,grade
+1,Junior Developer,G1
+2,Senior Developer,G3
+3,IT Manager,G4
+4,Data Analyst,G2
+5,Accountant,G2
+6,Finance Manager,G4
+7,Financial Analyst,G3
+8,Sales Representative,G2
+9,Sales Manager,G4
+10,Marketing Specialist,G2
+11,Marketing Manager,G4
+12,Operations Associate,G1
+13,Operations Manager,G4
+14,HR Staff,G1
+15,HR Manager,G4
+16,Admin Staff,G1
+17,Admin Manager,G4
+18,Legal Counsel,G3
+19,Legal Manager,G5
