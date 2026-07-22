@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HR Data Preview — Interactive Tables</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'Segoe UI',sans-serif; background:#f8fafc; color:#1e293b; padding:20px; }
+h1 { color:#0f172a; margin-bottom:4px; }
+.sub { color:#64748b; margin-bottom:24px; }
+.nav { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:24px; }
+.nav button {
+  padding:10px 20px; border:1px solid #e2e8f0; border-radius:8px;
+  background:#fff; cursor:pointer; font-weight:600; font-size:0.9rem;
+  transition:all 0.15s;
+}
+.nav button:hover { border-color:#2563eb; color:#2563eb; }
+.nav button.active { background:#2563eb; color:#fff; border-color:#2563eb; }
+.panel { display:none; }
+.panel.active { display:block; }
+.search {
+  padding:10px 16px; border:1px solid #e2e8f0; border-radius:8px;
+  width:300px; font-size:0.9rem; margin-bottom:16px;
+}
+table { width:100%; border-collapse:collapse; font-size:0.85rem; }
+th {
+  background:#f1f5f9; padding:10px 12px; text-align:left;
+  cursor:pointer; user-select:none; font-weight:600;
+  border-bottom:2px solid #e2e8f0; position:sticky; top:0;
+}
+th:hover { background:#e2e8f0; }
+th::after { content:' \25B4\25BE'; font-size:0.65rem; color:#94a3b8; }
+td { padding:8px 12px; border-bottom:1px solid #f1f5f9; }
+tr:hover td { background:#f8fafc; }
+.wrap { overflow-x:auto; max-height:500px; overflow-y:auto; border:1px solid #e2e8f0; border-radius:8px; }
+.count { color:#64748b; font-size:0.85rem; margin-bottom:12px; }
+.summary-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:12px; margin-bottom:24px; }
+.summary-card {
+  background:#fff; border:1px solid #e2e8f0; border-radius:10px;
+  padding:16px; text-align:center;
+}
+.summary-card .num { font-size:1.5rem; font-weight:700; color:#2563eb; }
+.summary-card .label { font-size:0.8rem; color:#64748b; margin-top:4px; }
+@media(max-width:768px) {
+  .search { width:100%; }
+  .nav button { flex:1; text-align:center; }
+}
+</style>
+</head>
+<body>
+
+<h1>HR Analytics System — Data Preview</h1>
+<p class="sub">Interactive tables with sample data. Click column headers to sort. Use search to filter.</p>
+
+<div class="summary-grid" id="summary"></div>
+
+<div class="nav" id="tabs"></div>
+
+<div id="panels"></div>
+
+<script>
+const DATA_URL = 'analysis_results/';
+
+const TABLES = [
+  { key:'employee', label:'\u{1F465} Employee' },
+  { key:'department', label:'\u{1F3E2} Department' },
+  { key:'position', label:'\u{1F3ED} Position' },
+  { key:'attendance', label:'\u{1F4C5} Attendance' },
+  { key:'leave', label:'\u{2708} Leave' },
+  { key:'performance', label:'\u{2B50} Performance' },
+  { key:'recruitment', label:'\u{1F50D} Recruitment' },
+  { key:'training', label:'\u{1F393} Training' },
+];
+
+let currentTab = 'employee';
+let sortState = {};
+
+// Load summary
+fetch(DATA_URL + 'sample_summary.json').then(r=>r.json()).then(s=>{
+  const cards = [
+    { n:s.emp_total, l:'Total Employees' },
+    { n:s.emp_active, l:'Active' },
+    { n:s.turnover_rate+'%', l:'Turnover Rate' },
+    { n:'Rp '+Math.round(s.avg_salary/1e6)+'M', l:'Avg Salary' },
+    { n:s.att_present_pct+'%', l:'Attendance' },
+    { n:s.hire_rate+'%', l:'Hire Rate' },
+  ];
+  document.getElementById('summary').innerHTML = cards.map(c =>
+    '<div class="summary-card"><div class="num">'+c.n+'</div><div class="label">'+c.l+'</div></div>'
+  ).join('');
+});
+
+function renderTab(key) {
+  currentTab = key;
+  document.querySelectorAll('.nav button').forEach(b => b.classList.toggle('active', b.dataset.key === key));
+  document.querySelectorAll('.panel').forEach(p => p.classList.toggle('active', p.id === 'panel-'+key));
+  if (!document.getElementById('panel-'+key).querySelector('table')) {
+    loadTable(key);
+  }
+}
+
+function loadTable(key) {
+  fetch(DATA_URL + 'sample_'+key+'.json').then(r=>r.json()).then(data => {
+    if (!data.length) return;
+    const cols = Object.keys(data[0]);
+    const panel = document.getElementById('panel-'+key);
+    const count = panel.querySelector('.count');
+    count.textContent = 'Showing '+data.length+' rows (sample)';
+
+    if (!sortState[key]) sortState[key] = {col:null,dir:1};
+
+    const tbody = panel.querySelector('tbody');
+    tbody.innerHTML = renderRows(data, cols, key);
+
+    const thead = panel.querySelector('thead');
+    thead.innerHTML = cols.map(c =>
+      '<th data-col="'+c+'" onclick="sortTable(\''+key+'\',\''+c+'\')">'+formatCol(c)+'</th>'
+    ).join('');
+
+    panel.querySelector('.search').oninput = function() {
+      const q = this.value.toLowerCase();
+      const filtered = data.filter(r => cols.some(c => String(r[c]).toLowerCase().includes(q)));
+      tbody.innerHTML = renderRows(filtered, cols, key);
+      count.textContent = 'Showing '+filtered.length+' rows (filtered)';
+    };
+  });
+}
+
+function renderRows(data, cols, key) {
+  const st = sortState[key];
+  if (st.col) {
+    data.sort((a,b) => {
+      const va = a[st.col], vb = b[st.col];
+      if (typeof va === 'number') return (va - vb) * st.dir;
+      return String(va).localeCompare(String(vb)) * st.dir;
+    });
+  }
+  return data.map(r => '<tr>'+cols.map(c => {
+    let v = r[c];
+    if (v === null || v === undefined) return '<td></td>';
+    if (typeof v === 'number') {
+      if (c.includes('salary') || c.includes('salary')) v = 'Rp '+v.toLocaleString();
+      else v = v.toLocaleString();
+    }
+    return '<td>'+v+'</td>';
+  }).join('')+'</tr>').join('');
+}
+
+function sortTable(key, col) {
+  const st = sortState[key];
+  if (st.col === col) st.dir *= -1;
+  else { st.col = col; st.dir = 1; }
+  loadTable(key);
+}
+
+function formatCol(c) {
+  return c.replace(/_/g,' ').replace(/\b\w/g, l => l.toUpperCase());
+}
+
+// Build tabs & panels
+const tabsEl = document.getElementById('tabs');
+const panelsEl = document.getElementById('panels');
+
+TABLES.forEach(t => {
+  const btn = document.createElement('button');
+  btn.textContent = t.label;
+  btn.dataset.key = t.key;
+  btn.onclick = () => renderTab(t.key);
+  tabsEl.appendChild(btn);
+
+  const panel = document.createElement('div');
+  panel.id = 'panel-'+t.key;
+  panel.className = 'panel' + (t.key === currentTab ? ' active' : '');
+  panel.innerHTML = `
+    <input class="search" placeholder="Search ${t.label}..." />
+    <div class="count">Loading...</div>
+    <div class="wrap"><table><thead></thead><tbody></tbody></table></div>
+  `;
+  panelsEl.appendChild(panel);
+});
+
+// Load initial tab
+renderTab('employee');
+</script>
+</body>
+</html>

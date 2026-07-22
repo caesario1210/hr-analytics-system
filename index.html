@@ -171,10 +171,11 @@
     <ul>
       <li><a href="#overview">Overview</a></li>
       <li><a href="#features">Features</a></li>
-      <li><a href="#generation">Data Gen</a></li>
+      <li><a href="#demo">Live Demo</a></li>
       <li><a href="#roadmap">Roadmap</a></li>
       <li><a href="#queries">Queries</a></li>
       <li><a href="#dashboard">Dashboard</a></li>
+      <li><a href="#downloads">Downloads</a></li>
     </ul>
   </div>
 </nav>
@@ -186,8 +187,9 @@
     <h1>HR <span>Analytics</span> System</h1>
     <p>End-to-end data analytics pipeline — from raw CSV to actionable HR insights. Database design, SQL, data cleaning, analysis, and interactive dashboard.</p>
     <div class="hero-actions">
-      <a href="#overview" class="btn btn-primary">Explore Project</a>
-      <a href="https://github.com/" target="_blank" class="btn btn-outline">View on GitHub &nearr;</a>
+      <a href="#demo" class="btn btn-primary">Live Demo &darr;</a>
+      <a href="dashboard/demo.html" class="btn btn-outline">Browse Data &nearr;</a>
+      <a href="#downloads" class="btn btn-outline">Download &darr;</a>
     </div>
   </div>
 </section>
@@ -343,6 +345,89 @@
   </div>
 </section>
 
+<!-- Live Demo -->
+<section id="demo">
+  <div class="container">
+    <h2>Live Data Preview</h2>
+    <p class="subtitle">Browse actual HR data directly in your browser — sort, search, filter.</p>
+    <div style="text-align:center;margin-bottom:32px;">
+      <a href="dashboard/demo.html" target="_blank" class="btn btn-primary" style="font-size:1.1rem;padding:14px 40px;">
+        Open Interactive Tables &nearr;
+      </a>
+    </div>
+    <div style="border:1px solid #e2e8f0;border-radius:12px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,0.06);">
+      <iframe src="dashboard/demo.html" style="width:100%;height:600px;border:none;" title="Live Data Preview"></iframe>
+    </div>
+  </div>
+</section>
+
+<!-- Google Sheets Dashboard -->
+<section style="background:#f1f5f9;">
+  <div class="container">
+    <h2>Live Dashboard</h2>
+    <p class="subtitle">Full 5-sheet Excel dashboard published via Google Sheets.</p>
+    <div style="text-align:center;margin-bottom:16px;">
+      <p style="color:#64748b;margin-bottom:12px;">
+        <strong>Step:</strong> Upload <code>dashboard/HR Dashboard.xlsx</code> to Google Drive &rarr;
+        File &rarr; Share &rarr; Publish to web &rarr; Replace the iframe src below.
+      </p>
+      <a href="https://docs.google.com/spreadsheets/" target="_blank" class="btn btn-outline" style="background:#fff;">
+        Open Google Sheets &nearr;
+      </a>
+    </div>
+    <div style="border:1px solid #e2e8f0;border-radius:12px;overflow:hidden;background:#fff;padding:40px;text-align:center;color:#94a3b8;">
+      <p style="font-size:1.1rem;">&#128202; Dashboard embed placeholder</p>
+      <p style="font-size:0.85rem;">Upload your Excel file to Google Sheets, then replace the iframe below.</p>
+      <pre style="background:#f1f5f9;padding:12px;border-radius:8px;margin-top:12px;text-align:left;font-size:0.8rem;">
+&lt;iframe src="https://docs.google.com/spreadsheets/d/e/YOUR-SHEET-ID/pubhtml?widget=true&amp;headers=false"
+  width="100%" height="600" frameborder="0"&gt;&lt;/iframe&gt;
+      </pre>
+    </div>
+  </div>
+</section>
+
+<!-- Try SQL Online -->
+<section>
+  <div class="container">
+    <h2>Try SQL Queries Online</h2>
+    <p class="subtitle">Run the actual analysis queries in your browser via db-fiddle.</p>
+    <div style="text-align:center;margin-bottom:16px;">
+      <p style="color:#64748b;margin-bottom:12px;">
+        <strong>Step:</strong> Open <code>database/create_table.sql</code> + <code>database/analysis.sql</code>,
+        paste into db-fiddle (PostgreSQL), click Run.
+      </p>
+      <a href="https://www.db-fiddle.com/" target="_blank" class="btn btn-primary">
+        Open db-fiddle &nearr;
+      </a>
+    </div>
+    <div class="grid-2" style="margin-top:16px;">
+      <div class="card">
+        <h3>Schema</h3>
+        <div class="query-block" style="font-size:0.75rem;padding:12px 16px;">
+<span class="kw">CREATE TABLE</span> employee (<br>
+&nbsp;&nbsp;employee_id INT PK, full_name VARCHAR(150),<br>
+&nbsp;&nbsp;salary NUMERIC(12,2), status VARCHAR(20),<br>
+&nbsp;&nbsp;department_id INT FK, position_id INT FK<br>
+);<br>
+<span class="cm">-- 8 tables total (see create_table.sql)</span>
+        </div>
+      </div>
+      <div class="card">
+        <h3>Try This Query</h3>
+        <div class="query-block" style="font-size:0.75rem;padding:12px 16px;">
+<span class="kw">SELECT</span> d.department_name,<br>
+&nbsp;&nbsp;<span class="fn">ROUND</span>(<span class="fn">AVG</span>(e.salary),<span class="num">2</span>) <span class="kw">AS</span> avg_salary<br>
+<span class="kw">FROM</span> employee e<br>
+<span class="kw">JOIN</span> department d <span class="kw">ON</span> e.department_id = d.department_id<br>
+<span class="kw">WHERE</span> e.status = <span class="cm">'Active'</span><br>
+<span class="kw">GROUP BY</span> d.department_name<br>
+<span class="kw">ORDER BY</span> avg_salary <span class="kw">DESC</span>;
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- Roadmap -->
 <section id="roadmap">
   <div class="container">
@@ -466,6 +551,61 @@
         <p>Same dashboard rebuilt in Power BI with direct DB connection.</p>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- Downloads -->
+<section id="downloads">
+  <div class="container">
+    <h2>Download Assets</h2>
+    <p class="subtitle">All project files available for download directly from GitHub.</p>
+    <div class="grid-3">
+      <div class="card" style="text-align:center">
+        <span class="icon">&#128194;</span>
+        <h3>Dataset (CSV)</h3>
+        <p>8 CSV files — 30,000+ rows of realistic HR data</p>
+        <div style="margin-top:12px;display:flex;flex-direction:column;gap:6px;">
+          <a href="https://raw.githubusercontent.com/caesario1210/hr-analytics-system/main/dataset/employee.csv" target="_blank" class="btn" style="background:#f1f5f9;color:#1e293b;padding:8px;font-size:0.85rem;">employee.csv</a>
+          <a href="https://raw.githubusercontent.com/caesario1210/hr-analytics-system/main/dataset/attendance.csv" target="_blank" class="btn" style="background:#f1f5f9;color:#1e293b;padding:8px;font-size:0.85rem;">attendance.csv</a>
+          <a href="https://raw.githubusercontent.com/caesario1210/hr-analytics-system/main/dataset/recruitment.csv" target="_blank" class="btn" style="background:#f1f5f9;color:#1e293b;padding:8px;font-size:0.85rem;">recruitment.csv</a>
+          <a href="https://github.com/caesario1210/hr-analytics-system/tree/main/dataset" target="_blank" class="btn" style="background:#2563eb;color:#fff;padding:8px;font-size:0.85rem;">View All 8 Files &nearr;</a>
+        </div>
+      </div>
+      <div class="card" style="text-align:center">
+        <span class="icon">&#128196;</span>
+        <h3>SQL Scripts</h3>
+        <p>4 SQL scripts — schema, import, cleaning, 22 analysis queries</p>
+        <div style="margin-top:12px;display:flex;flex-direction:column;gap:6px;">
+          <a href="https://raw.githubusercontent.com/caesario1210/hr-analytics-system/main/database/create_table.sql" target="_blank" class="btn" style="background:#f1f5f9;color:#1e293b;padding:8px;font-size:0.85rem;">create_table.sql</a>
+          <a href="https://raw.githubusercontent.com/caesario1210/hr-analytics-system/main/database/cleaning.sql" target="_blank" class="btn" style="background:#f1f5f9;color:#1e293b;padding:8px;font-size:0.85rem;">cleaning.sql</a>
+          <a href="https://raw.githubusercontent.com/caesario1210/hr-analytics-system/main/database/analysis.sql" target="_blank" class="btn" style="background:#f1f5f9;color:#1e293b;padding:8px;font-size:0.85rem;">analysis.sql</a>
+          <a href="https://github.com/caesario1210/hr-analytics-system/tree/main/database" target="_blank" class="btn" style="background:#2563eb;color:#fff;padding:8px;font-size:0.85rem;">View SQL Files &nearr;</a>
+        </div>
+      </div>
+      <div class="card" style="text-align:center">
+        <span class="icon">&#128202;</span>
+        <h3>Dashboard &amp; Code</h3>
+        <p>Excel dashboard + Python scripts + data generator</p>
+        <div style="margin-top:12px;display:flex;flex-direction:column;gap:6px;">
+          <a href="https://raw.githubusercontent.com/caesario1210/hr-analytics-system/main/dashboard/HR%20Dashboard.xlsx" target="_blank" class="btn" style="background:#f1f5f9;color:#1e293b;padding:8px;font-size:0.85rem;">HR Dashboard.xlsx</a>
+          <a href="https://raw.githubusercontent.com/caesario1210/hr-analytics-system/main/dataset/generate_dummy_data.py" target="_blank" class="btn" style="background:#f1f5f9;color:#1e293b;padding:8px;font-size:0.85rem;">generate_data.py</a>
+          <a href="https://raw.githubusercontent.com/caesario1210/hr-analytics-system/main/dataset/export_analysis.py" target="_blank" class="btn" style="background:#f1f5f9;color:#1e293b;padding:8px;font-size:0.85rem;">export_analysis.py</a>
+          <a href="https://github.com/caesario1210/hr-analytics-system" target="_blank" class="btn" style="background:#2563eb;color:#fff;padding:8px;font-size:0.85rem;">View Full Repo &nearr;</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GitHub Link -->
+<section style="padding:40px 0;text-align:center;">
+  <div class="container">
+    <p style="font-size:1.1rem;">
+      &#128279; Full project repository:
+      <a href="https://github.com/caesario1210/hr-analytics-system" target="_blank" style="font-weight:700;">
+        github.com/caesario1210/hr-analytics-system &nearr;
+      </a>
+    </p>
   </div>
 </section>
 
